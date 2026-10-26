@@ -1,0 +1,719 @@
+/* Floating surfaces: popover, tooltip, menu, select, combobox, preview card, dialog, drawer, command palette, toast. */
+
+@layer components {
+  .zay-positioner {
+    z-index: var(--z-popup);
+    outline: 0;
+  }
+
+  /* The shared popup surface: ring + soft layered shadow, scale-in from the trigger. */
+  .zay-popup,
+  .zay-menu,
+  .zay-select-popup,
+  .zay-combobox-popup {
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--popover);
+    color: var(--foreground);
+    box-shadow: var(--shadow-lg);
+    outline: 0;
+    transform-origin: var(--transform-origin);
+    transition:
+      transform var(--duration-fast) var(--ease-out),
+      opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-popup[data-starting-style],
+  .zay-popup[data-ending-style],
+  .zay-menu[data-starting-style],
+  .zay-menu[data-ending-style],
+  .zay-select-popup[data-starting-style],
+  .zay-select-popup[data-ending-style],
+  .zay-combobox-popup[data-starting-style],
+  .zay-combobox-popup[data-ending-style] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  .zay-popup {
+    width: max-content;
+    max-width: min(22rem, calc(100vw - 2rem));
+    padding: 1rem;
+  }
+
+  .zay-popup-hover {
+    padding: 0.75rem;
+  }
+
+  /* Tooltip: a dark bubble with an arrow-less, quick fade. */
+  .zay-tooltip {
+    max-width: 18rem;
+    padding: 0.3125rem 0.625rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--inverse);
+    color: var(--inverse-foreground);
+    box-shadow: var(--shadow-md);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transform-origin: var(--transform-origin);
+    transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-tooltip[data-starting-style],
+  .zay-tooltip[data-ending-style] {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  /* Items shared by menu, select and combobox */
+  .zay-menu,
+  .zay-select-popup,
+  .zay-combobox-popup {
+    min-width: 10rem;
+    padding: 0.25rem;
+  }
+
+  .zay-menu-item,
+  .zay-select-item,
+  .zay-combobox-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0.375rem 0.5rem;
+    border-radius: var(--radius-sm);
+    color: var(--foreground);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-decoration: none;
+    cursor: default;
+    outline: 0;
+    user-select: none;
+  }
+
+  .zay-menu-item svg,
+  .zay-select-item svg,
+  .zay-combobox-item svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    color: var(--muted-foreground);
+  }
+
+  .zay-menu-item[data-highlighted],
+  .zay-select-item[data-highlighted],
+  .zay-combobox-item[data-highlighted] {
+    background-color: var(--muted);
+  }
+
+  .zay-menu-item[data-popup-open] {
+    background-color: var(--muted);
+  }
+
+  .zay-menu-item[data-disabled],
+  .zay-select-item[data-disabled],
+  .zay-combobox-item[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .zay-menu-item-destructive {
+    color: var(--destructive);
+  }
+
+  .zay-menu-item-destructive svg {
+    color: inherit;
+  }
+
+  .zay-menu-item-destructive[data-highlighted] {
+    background-color: var(--destructive-soft);
+  }
+
+  .zay-menu-shortcut {
+    margin-inline-start: auto;
+    padding-inline-start: 1.5rem;
+    color: var(--subtle-foreground);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .zay-menu-label {
+    padding: 0.375rem 0.5rem 0.25rem;
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .zay-menu-separator {
+    height: 1px;
+    margin: 0.25rem -0.25rem;
+    background-color: var(--border);
+  }
+
+  /* Checkbox / radio rows keep the indicator in a reserved gutter */
+  .zay-menu-check {
+    padding-inline-start: 1.75rem;
+  }
+
+  .zay-menu-indicator {
+    position: absolute;
+    inset-inline-start: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Select */
+  .zay-select-trigger,
+  .zay-combobox-trigger-field {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 10rem;
+    height: var(--control-md);
+    padding-inline: 0.75rem 0.5rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    box-shadow: var(--shadow-xs);
+    cursor: pointer;
+    transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-select-trigger:hover {
+    border-color: color-mix(in oklab, var(--border-strong) 70%, var(--foreground));
+  }
+
+  .zay-select-trigger[data-popup-open],
+  .zay-select-trigger:focus-visible {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-soft);
+  }
+
+  .zay-select-trigger[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .zay-select-trigger [data-placeholder] {
+    color: var(--subtle-foreground);
+  }
+
+  .zay-select-icon {
+    display: flex;
+    color: var(--muted-foreground);
+  }
+
+  .zay-select-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .zay-select-popup {
+    min-width: var(--anchor-width);
+    max-height: min(var(--available-height), 22rem);
+    overflow-y: auto;
+  }
+
+  .zay-select-item,
+  .zay-combobox-item {
+    padding-inline-start: 1.75rem;
+  }
+
+  .zay-select-item-indicator,
+  .zay-combobox-item-indicator {
+    position: absolute;
+    inset-inline-start: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .zay-select-item-indicator svg,
+  .zay-combobox-item-indicator svg {
+    color: var(--foreground);
+  }
+
+  /* Combobox */
+  .zay-combobox-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .zay-combobox-group .zay-input {
+    padding-inline-end: 3.5rem;
+  }
+
+  .zay-combobox-actions {
+    position: absolute;
+    inset-inline-end: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+  }
+
+  .zay-combobox-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+  }
+
+  .zay-combobox-action:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-combobox-action svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .zay-combobox-action[data-hidden] {
+    display: none;
+  }
+
+  .zay-combobox-popup {
+    min-width: var(--anchor-width);
+    max-height: min(var(--available-height), 20rem);
+    overflow-y: auto;
+  }
+
+  .zay-combobox-empty {
+    padding: 0.75rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .zay-combobox-empty:empty {
+    display: none;
+  }
+
+  /* Dialog / alert dialog */
+  .zay-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    min-height: 100dvh;
+    background-color: rgb(9 9 11 / 0.5);
+    backdrop-filter: blur(2px);
+    transition: opacity var(--duration) var(--ease-out);
+  }
+
+  .zay-backdrop[data-starting-style],
+  .zay-backdrop[data-ending-style] {
+    opacity: 0;
+  }
+
+  .zay-dialog-viewport {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .zay-dialog {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 28rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--popover);
+    color: var(--foreground);
+    box-shadow: var(--shadow-lg);
+    outline: 0;
+    transition:
+      transform var(--duration) var(--ease-spring),
+      opacity var(--duration) var(--ease-out);
+  }
+
+  .zay-dialog-lg {
+    max-width: 40rem;
+  }
+
+  .zay-dialog[data-starting-style],
+  .zay-dialog[data-ending-style] {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.97);
+  }
+
+  .zay-dialog-title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.35;
+  }
+
+  .zay-dialog-description {
+    margin: 0.375rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .zay-dialog-body {
+    margin-top: 1.25rem;
+  }
+
+  .zay-dialog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .zay-dialog-close {
+    position: absolute;
+    inset-block-start: 0.875rem;
+    inset-inline-end: 0.875rem;
+  }
+
+  /* Drawer / sheet */
+  .zay-drawer-viewport {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: flex;
+  }
+
+  .zay-drawer {
+    --bleed: 3rem;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--popover);
+    color: var(--foreground);
+    box-shadow: var(--shadow-lg);
+    outline: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transition: transform 450ms var(--ease-spring);
+  }
+
+  .zay-drawer[data-swiping] {
+    user-select: none;
+  }
+
+  .zay-drawer-right {
+    width: min(26rem, calc(100vw - 2rem));
+    height: 100%;
+    margin-inline-start: auto;
+    border-inline-start: 1px solid var(--border);
+    padding: 1.5rem;
+    transform: translateX(var(--drawer-swipe-movement-x, 0));
+  }
+
+  .zay-drawer-right[data-starting-style],
+  .zay-drawer-right[data-ending-style] {
+    transform: translateX(100%);
+  }
+
+  .zay-drawer-left {
+    width: min(26rem, calc(100vw - 2rem));
+    height: 100%;
+    margin-inline-end: auto;
+    border-inline-end: 1px solid var(--border);
+    padding: 1.5rem;
+    transform: translateX(var(--drawer-swipe-movement-x, 0));
+  }
+
+  .zay-drawer-left[data-starting-style],
+  .zay-drawer-left[data-ending-style] {
+    transform: translateX(-100%);
+  }
+
+  .zay-drawer-bottom {
+    width: 100%;
+    max-height: 85dvh;
+    margin-block-start: auto;
+    border-block-start: 1px solid var(--border);
+    border-start-start-radius: var(--radius-xl);
+    border-start-end-radius: var(--radius-xl);
+    padding: 1.25rem 1.5rem 1.5rem;
+    transform: translateY(var(--drawer-swipe-movement-y, 0));
+  }
+
+  .zay-drawer-bottom[data-starting-style],
+  .zay-drawer-bottom[data-ending-style] {
+    transform: translateY(100%);
+  }
+
+  .zay-drawer-handle {
+    width: 2.5rem;
+    height: 0.3125rem;
+    margin: 0 auto 1rem;
+    border-radius: 999px;
+    background-color: var(--border-strong);
+  }
+
+  /* Command palette: a dialog with a search field and a result list. */
+  .zay-command {
+    max-width: 36rem;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .zay-command-input {
+    width: 100%;
+    height: 3.25rem;
+    padding-inline: 1rem;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    color: var(--foreground);
+    font: inherit;
+    font-size: 0.9375rem;
+  }
+
+  .zay-command-input:focus {
+    outline: none;
+  }
+
+  .zay-command-input::placeholder {
+    color: var(--subtle-foreground);
+  }
+
+  .zay-command-list {
+    max-height: 20rem;
+    padding: 0.375rem;
+    overflow-y: auto;
+  }
+
+  .zay-command-group-label {
+    padding: 0.5rem 0.625rem 0.25rem;
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .zay-command-item {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0.625rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    cursor: default;
+  }
+
+  .zay-command-item svg {
+    width: 1rem;
+    height: 1rem;
+    color: var(--muted-foreground);
+  }
+
+  .zay-command-item[data-highlighted] {
+    background-color: var(--muted);
+  }
+
+  .zay-command-empty {
+    padding: 2rem 1rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .zay-command-empty:empty {
+    display: none;
+  }
+
+  .zay-command-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0.875rem;
+    border-top: 1px solid var(--border);
+    background-color: var(--surface);
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+  }
+
+  /* Toast: a stack that fans out on hover. */
+  .zay-toast-viewport {
+    position: fixed;
+    z-index: var(--z-toast);
+    inset-block-end: 1rem;
+    inset-inline-end: 1rem;
+    width: calc(100vw - 2rem);
+    max-width: 23rem;
+  }
+
+  .zay-toast {
+    --gap: 0.75rem;
+    --peek: 0.75rem;
+    --scale: calc(max(0, 1 - (var(--toast-index) * 0.1)));
+    --shrink: calc(1 - var(--scale));
+    --height: var(--toast-frontmost-height, var(--toast-height));
+    --offset-y: calc(var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) + var(--toast-swipe-movement-y));
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: var(--height);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--popover);
+    color: var(--foreground);
+    box-shadow: var(--shadow-lg);
+    transform-origin: bottom center;
+    user-select: none;
+    cursor: default;
+    z-index: calc(1000 - var(--toast-index));
+    transform: translateX(var(--toast-swipe-movement-x))
+      translateY(calc(var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height))))
+      scale(var(--scale));
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s,
+      height 0.15s;
+  }
+
+  .zay-toast[data-expanded] {
+    transform: translateX(var(--toast-swipe-movement-x)) translateY(var(--offset-y));
+    height: var(--toast-height);
+  }
+
+  .zay-toast[data-starting-style],
+  .zay-toast[data-ending-style] {
+    transform: translateY(150%);
+  }
+
+  .zay-toast[data-limited] {
+    opacity: 0;
+  }
+
+  .zay-toast[data-ending-style] {
+    opacity: 0;
+  }
+
+  .zay-toast[data-ending-style][data-swipe-direction="up"] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) - 150%));
+  }
+
+  .zay-toast[data-ending-style][data-swipe-direction="left"] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) - 150%)) translateY(var(--offset-y));
+  }
+
+  .zay-toast[data-ending-style][data-swipe-direction="right"] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) + 150%)) translateY(var(--offset-y));
+  }
+
+  .zay-toast[data-ending-style][data-swipe-direction="down"] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+  }
+
+  .zay-toast::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline: 0;
+    height: calc(var(--gap) + 1px);
+  }
+
+  .zay-toast-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    overflow: hidden;
+    transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .zay-toast-content[data-behind] {
+    opacity: 0;
+  }
+
+  .zay-toast-content[data-expanded] {
+    opacity: 1;
+  }
+
+  .zay-toast-icon {
+    flex: none;
+    margin-top: 0.125rem;
+    color: var(--muted-foreground);
+  }
+
+  .zay-toast-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .zay-toast[data-type="success"] .zay-toast-icon {
+    color: var(--success);
+  }
+
+  .zay-toast[data-type="error"] .zay-toast-icon {
+    color: var(--destructive);
+  }
+
+  .zay-toast-text {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .zay-toast-title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .zay-toast-description {
+    margin: 0.125rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  .zay-toast-close {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: -0.125rem -0.25rem 0 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+  }
+
+  .zay-toast-close:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-toast-close svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}

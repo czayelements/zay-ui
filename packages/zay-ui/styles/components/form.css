@@ -1,0 +1,519 @@
+/* Inputs and form controls: input, textarea, input group, label, field, checkbox, radio, switch, slider, number field, OTP. */
+
+@layer components {
+  .zay-label {
+    display: inline-block;
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+  }
+
+  .zay-input,
+  .zay-textarea {
+    width: 100%;
+    height: var(--control-md);
+    padding-inline: 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-textarea {
+    height: auto;
+    min-height: 5.5rem;
+    padding-block: 0.5rem;
+    resize: vertical;
+  }
+
+  .zay-input::placeholder,
+  .zay-textarea::placeholder {
+    color: var(--subtle-foreground);
+  }
+
+  .zay-input:hover:not(:focus, :disabled),
+  .zay-textarea:hover:not(:focus, :disabled) {
+    border-color: color-mix(in oklab, var(--border-strong) 70%, var(--foreground));
+  }
+
+  .zay-input:focus,
+  .zay-textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-soft);
+  }
+
+  .zay-input:disabled,
+  .zay-textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .zay-input[aria-invalid="true"],
+  .zay-input[data-invalid],
+  .zay-textarea[aria-invalid="true"] {
+    border-color: var(--destructive);
+  }
+
+  .zay-input[aria-invalid="true"]:focus,
+  .zay-input[data-invalid]:focus,
+  .zay-textarea[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 3px var(--destructive-soft);
+  }
+
+  .zay-input-sm {
+    height: var(--control-sm);
+    font-size: 0.8125rem;
+  }
+
+  .zay-input-lg {
+    height: var(--control-lg);
+    font-size: 0.9375rem;
+  }
+
+  .zay-input[type="file"] {
+    padding-top: 0.4rem;
+  }
+
+  .zay-input[type="file"]::file-selector-button {
+    margin-inline-end: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--foreground);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  /* Input group: an input with an icon or text on either side. */
+  .zay-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .zay-input-group > .zay-input {
+    flex: 1;
+  }
+
+  .zay-input-addon {
+    position: absolute;
+    inset-block: 0;
+    display: flex;
+    align-items: center;
+    padding-inline: 0.75rem;
+    color: var(--subtle-foreground);
+    font-size: 0.875rem;
+    pointer-events: none;
+  }
+
+  .zay-input-addon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .zay-input-addon-start {
+    inset-inline-start: 0;
+  }
+
+  .zay-input-addon-end {
+    inset-inline-end: 0;
+  }
+
+  .zay-input-group:has(.zay-input-addon-start) > .zay-input {
+    padding-inline-start: 2.375rem;
+  }
+
+  .zay-input-group:has(.zay-input-addon-end) > .zay-input {
+    padding-inline-end: 2.375rem;
+  }
+
+  .zay-input-addon-interactive {
+    pointer-events: auto;
+  }
+
+  /* Field */
+  .zay-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: 100%;
+  }
+
+  .zay-field-description {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .zay-field-error {
+    margin: 0;
+    color: var(--destructive);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .zay-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .zay-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .zay-fieldset-legend {
+    padding: 0;
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* Checkbox */
+  .zay-checkbox {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xs);
+    background-color: var(--background);
+    color: var(--brand-foreground);
+    box-shadow: var(--shadow-xs);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-checkbox:active {
+    transform: scale(0.92);
+  }
+
+  .zay-checkbox[data-checked],
+  .zay-checkbox[data-indeterminate] {
+    border-color: var(--brand);
+    background-color: var(--brand);
+  }
+
+  .zay-checkbox[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .zay-checkbox[data-invalid] {
+    border-color: var(--destructive);
+  }
+
+  .zay-checkbox-indicator {
+    display: flex;
+  }
+
+  .zay-checkbox-indicator[data-unchecked] {
+    display: none;
+  }
+
+  .zay-checkbox-indicator svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    stroke-width: 2.5;
+  }
+
+  .zay-checkbox-indicator path {
+    stroke-dasharray: 16;
+    stroke-dashoffset: 0;
+    animation: zay-draw 0.22s var(--ease-out) both;
+  }
+
+  @keyframes zay-draw {
+    from {
+      stroke-dashoffset: 16;
+    }
+  }
+
+  /* Radio */
+  .zay-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .zay-radio {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background-color: var(--background);
+    box-shadow: var(--shadow-xs);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-radio[data-checked] {
+    border-color: var(--brand);
+    background-color: var(--brand);
+  }
+
+  .zay-radio[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .zay-radio-indicator {
+    display: block;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 999px;
+    background-color: var(--brand-foreground);
+    animation: zay-pop 0.2s var(--ease-spring) both;
+  }
+
+  .zay-radio-indicator[data-unchecked] {
+    display: none;
+  }
+
+  @keyframes zay-pop {
+    from {
+      transform: scale(0);
+    }
+  }
+
+  /* Choice row: a control with a label and optional description, as one click target. */
+  .zay-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+  }
+
+  .zay-choice > :first-child {
+    margin-top: 0.0625rem;
+  }
+
+  .zay-choice-description {
+    display: block;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  /* Switch */
+  .zay-switch {
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    width: 2.25rem;
+    height: 1.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--border-strong);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.12);
+    cursor: pointer;
+    transition: background-color var(--duration) var(--ease-out);
+  }
+
+  .zay-switch[data-checked] {
+    background-color: var(--brand);
+  }
+
+  .zay-switch[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .zay-switch-thumb {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    margin-inline-start: 2px;
+    border-radius: 999px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+    transition: transform var(--duration) var(--ease-spring), width var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-switch:active .zay-switch-thumb {
+    width: 1.25rem;
+  }
+
+  .zay-switch-thumb[data-checked] {
+    transform: translateX(1rem);
+  }
+
+  .zay-switch:active .zay-switch-thumb[data-checked] {
+    transform: translateX(0.75rem);
+  }
+
+  /* Slider */
+  .zay-slider {
+    width: 100%;
+  }
+
+  .zay-slider-control {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-block: 0.5rem;
+    touch-action: none;
+    user-select: none;
+  }
+
+  .zay-slider-track {
+    position: relative;
+    width: 100%;
+    height: 0.375rem;
+    border-radius: 999px;
+    background-color: var(--muted);
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
+
+  .zay-slider-indicator {
+    border-radius: 999px;
+    background-color: var(--brand);
+  }
+
+  .zay-slider-thumb {
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background-color: #fff;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-slider-thumb:hover {
+    transform: scale(1.08);
+  }
+
+  .zay-slider-thumb:has(:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  .zay-slider-thumb[data-dragging] {
+    transform: scale(1.15);
+  }
+
+  .zay-slider[data-disabled] {
+    opacity: 0.5;
+  }
+
+  /* Number field */
+  .zay-number {
+    display: flex;
+    height: var(--control-md);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--background);
+    box-shadow: var(--shadow-xs);
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-number:focus-within {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-soft);
+  }
+
+  .zay-number-input {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--foreground);
+    font: inherit;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+
+  .zay-number-input:focus {
+    outline: none;
+  }
+
+  .zay-number-step {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: var(--control-md);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-number-step:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-number-step[data-disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .zay-number-step svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  /* OTP */
+  .zay-otp {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .zay-otp-input {
+    width: 2.5rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--background);
+    color: var(--foreground);
+    font: inherit;
+    font-size: 1.125rem;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-otp-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-soft);
+  }
+}

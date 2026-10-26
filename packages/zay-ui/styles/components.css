@@ -1,0 +1,18 @@
+/*
+ * zay-ui component styles.
+ *
+ * Every component is a plain CSS class prefixed `zay-` (.zay-btn, .zay-card …).
+ * The React components only print these classes, so the same look works without
+ * React: in plain HTML, in another framework, on a link (`class="zay-btn zay-btn-primary"`).
+ * Everything lives in @layer components, so your own utilities and CSS win.
+ *
+ * Interactive parts (dialog, menu, tabs …) are Base UI components; they are
+ * styled through the data attributes Base UI sets ([data-open], [data-checked],
+ * [data-starting-style] …). Each file below is self-contained: import only what
+ * you use, or all of it via styles.css.
+ */
+@import "./components/button.css";
+@import "./components/form.css";
+@import "./components/popup.css";
+@import "./components/display.css";
+@import "./components/disclosure.css";

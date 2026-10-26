@@ -1,107 +1,127 @@
 import Link from "next/link";
 
-import { Badge, Button, buttonClass, Card, CardDescription, CardTitle } from "@czayelements/czay-ui";
-import { CtaPanel, FeatureGrid, Footer, Hero, SectionHeading, Stats } from "@czayelements/czay-ui/blocks";
+import {
+  ArrowRightIcon, Badge, Button, buttonClass, CodeIcon, IconBox, LayersIcon, LockIcon, PaletteIcon, SparklesIcon, ZapIcon,
+} from "@czayelements/zay-ui";
 
+import { CopyButton } from "@/components/copy-button";
+import { Showcase } from "@/components/showcase";
 import { SiteHeader } from "@/components/site-header";
-import { blocks, components } from "@/lib/registry";
+import { categories, components } from "@/lib/entries";
 
-const Dot = () => (
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <circle cx="8" cy="8" r="2.5" />
-    <path d="M8 2v2M8 12v2M2 8h2M12 8h2" />
-  </svg>
-);
-
-const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const features = [
+  { icon: <LockIcon />, title: "Accessible by default", text: "Dialogs, menus, selects and tabs are Base UI primitives: focus management, keyboard support and aria handled." },
+  { icon: <PaletteIcon />, title: "One variable to theme", text: "Change --hue and the whole system follows: buttons, focus rings, links and soft backgrounds, light and dark." },
+  { icon: <CodeIcon />, title: "Plain CSS, any stack", text: "Components are zay- classes. Works with Tailwind v4, without it, or on a plain link." },
+  { icon: <ZapIcon />, title: "Server-component friendly", text: "Static parts carry no client code. Only interactive components ship JavaScript." },
+  { icon: <LayersIcon />, title: "Blocks, not just parts", text: "Complete sections and pages to start from: heroes, pricing, dashboards, auth and settings." },
+  { icon: <SparklesIcon />, title: "Polished details", text: "Layered shadows, spring easing, press feedback and reduced-motion support throughout." },
+];
 
 export default function Home() {
   return (
     <>
       <SiteHeader />
-      <Hero
-        centered
-        badge={<Badge label="Alpha">Under development</Badge>}
-        title="Calm interfaces, built fast"
-        lead="Design tokens, accessible components on Base UI and ready-made page blocks for React. Tailwind CSS v4 optional, MIT licensed."
-        actions={
-          <>
-            <Link className={buttonClass({ variant: "brand", size: "lg" })} href="/docs/">
-              Get started
+
+      <section className="dx-hero">
+        <div className="zay-container pt-20 pb-16 text-center lg:pt-28">
+          <Badge variant="brand" label="Alpha" className="mx-auto">
+            Open source · MIT
+          </Badge>
+          <h1 className="mx-auto mt-6 max-w-3xl text-[clamp(2.5rem,1.4rem+4.6vw,4.5rem)] leading-[1.02] font-semibold tracking-[-0.045em]">
+            Interfaces that feel <span className="dx-gradient-text">finished</span>, from day one.
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Accessible React components and ready-made blocks on Base UI. Re-colour everything with one variable, in light and dark.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <Link className={buttonClass({ variant: "primary", size: "lg" })} href="/docs/installation/">
+              Get started <ArrowRightIcon />
             </Link>
-            <Link className={buttonClass({ size: "lg" })} href="/docs/components/button/">
+            <Link className={buttonClass({ size: "lg" })} href="/docs/components/">
               Browse components
             </Link>
-          </>
-        }
-      />
-
-      <section className="zay-container pb-16">
-        <Stats
-          items={[
-            { value: String(components.length), label: "Component pages" },
-            { value: String(blocks.length), label: "Page blocks" },
-            { value: "Base UI", label: "Accessible primitives under the hood" },
-          ]}
-        />
-      </section>
-
-      <section className="zay-container zay-section">
-        <SectionHeading title="Small on purpose" description="A system you can read in an afternoon and bend to your brand with a handful of variables." />
-        <FeatureGrid
-          items={[
-            { icon: <Dot />, title: "Accessible by construction", description: "Dialogs, menus, tabs, selects and fields are Base UI components: focus management, keyboard and aria are not an afterthought." },
-            { icon: <Dot />, title: "Tokens, not magic numbers", description: "Colour, radius, shadow and type live in CSS variables. Override a few to re-theme everything, dark mode included." },
-            { icon: <Dot />, title: "Plain CSS under React", description: "Every component is a zay- class. The same look works in HTML, in other frameworks, on a link. Your utilities always win." },
-            { icon: <Dot />, title: "Server-component friendly", description: "Static components have no hooks; only the interactive ones are client components." },
-            { icon: <Dot />, title: "Blocks for whole pages", description: "Hero, feature grid, stats, FAQ, footer, status pages: compose a page from sections that already look right together." },
-            { icon: <Dot />, title: "Calm by design", description: "Warm paper, hairline borders, one sage accent. Colour is a signal for action, never decoration." },
-          ]}
-        />
-      </section>
-
-      <section className="zay-band zay-section">
-        <div className="zay-container grid items-start gap-8 lg:grid-cols-2">
-          <div>
-            <SectionHeading title="Compose, don't configure" description="Parts you can assemble, with sensible defaults." />
-            <Link className={buttonClass({ variant: "primary" })} href="/docs/components/dialog/">
-              See the Dialog
-            </Link>
           </div>
-          <Card tone="raised" padding="lg">
-            <CardTitle>Everything has a class</CardTitle>
-            <CardDescription>
-              <code>zay-btn zay-btn-primary</code> works in plain HTML too.
-            </CardDescription>
-            <div className="mt-5 flex gap-2">
-              <Button variant="primary">Primary</Button>
-              <Button>Outline</Button>
+          <div className="mt-6 flex justify-center">
+            <div className="dx-install">
+              <span className="dx-prompt">$</span>
+              <span>pnpm add @czayelements/zay-ui</span>
+              <CopyButton text="pnpm add @czayelements/zay-ui" />
             </div>
-          </Card>
+          </div>
+        </div>
+        <div className="zay-container pb-20">
+          <Showcase />
         </div>
       </section>
 
       <section className="zay-container zay-section">
-        <CtaPanel
-          title="Try it in five minutes"
-          description="Install the package, import one stylesheet, and you have tokens, components and blocks."
-          actions={
-            <Link className={buttonClass({ variant: "primary" })} href="/docs/">
-              Read the guide
-            </Link>
-          }
-        />
+        <h2 className="text-center text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-semibold tracking-[-0.035em]">Everything you need to ship</h2>
+        <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">A small system with strong defaults, built to be read in an afternoon and bent to your brand in a minute.</p>
+        <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f) => (
+            <div key={f.title}>
+              <IconBox solid>{f.icon}</IconBox>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{f.title}</h3>
+              <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted-foreground">{f.text}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <Footer
-        brand={<strong className="font-display text-lg">czay-ui</strong>}
-        description="A calm design system for React, built on Base UI. MIT licensed."
-        columns={[
-          { title: "Docs", links: [{ label: "Getting started", href: `${base}/docs/` }] },
-          { title: "Project", links: [{ label: "GitHub", href: "https://github.com/czayelements/zay-ui" }, { label: "npm", href: "https://www.npmjs.com/package/@czayelements/czay-ui" }] },
-        ]}
-        bottom={<span>© {new Date().getFullYear()} Furkan Özay</span>}
-      />
+      <section className="zay-band">
+        <div className="zay-container zay-section">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-semibold tracking-[-0.035em]">{components.length} components</h2>
+              <p className="mt-2 text-muted-foreground">Every one with live examples, copyable code and an API reference.</p>
+            </div>
+            <Link className={buttonClass({})} href="/docs/components/">
+              View all <ArrowRightIcon />
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+            {categories.map((category) => (
+              <div key={category}>
+                <h3 className="text-sm font-semibold">{category}</h3>
+                <ul className="mt-3 grid gap-1.5">
+                  {components
+                    .filter((c) => c.category === category)
+                    .map((c) => (
+                      <li key={c.slug}>
+                        <Link className="text-sm text-muted-foreground transition-colors hover:text-foreground" href={`/docs/components/${c.slug}/`}>
+                          {c.title}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="zay-container zay-section text-center">
+        <h2 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-semibold tracking-[-0.035em]">Start building</h2>
+        <p className="mx-auto mt-3 max-w-md text-muted-foreground">Install the package, import one stylesheet, ship your first screen today.</p>
+        <div className="mt-8 flex justify-center gap-3">
+          <Link className={buttonClass({ variant: "brand", size: "lg" })} href="/docs/installation/">
+            Get started <ArrowRightIcon />
+          </Link>
+          <a className={buttonClass({ size: "lg" })} href="https://github.com/czayelements/zay-ui">
+            Star on GitHub
+          </a>
+        </div>
+      </section>
+
+      <footer className="border-t border-border">
+        <div className="zay-container flex flex-wrap items-center justify-between gap-3 py-8 text-sm text-muted-foreground">
+          <span>zay-ui · MIT licensed · built on Base UI</span>
+          <span>
+            Made by <a className="text-foreground underline underline-offset-4" href="https://github.com/czaydev">czaydev</a>
+          </span>
+        </div>
+      </footer>
     </>
   );
 }

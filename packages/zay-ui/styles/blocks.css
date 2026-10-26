@@ -1,0 +1,1362 @@
+/*
+ * zay-ui block styles: marketing sections, authentication, and application layout.
+ * Blocks are made of the components, so most of their look comes from components.css;
+ * this file only adds layout. Everything lives in @layer components.
+ */
+
+@layer components {
+  .zay-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .zay-eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--link);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .zay-link-button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--link);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .zay-link-button:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Announcement ── */
+  .zay-announcement {
+    padding: 0.5rem 1rem;
+    background-color: var(--brand-soft);
+    border-bottom: 1px solid var(--brand-border);
+    color: var(--foreground);
+    font-size: 0.8125rem;
+    text-align: center;
+  }
+
+  .zay-announcement a {
+    color: var(--link);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .zay-announcement a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Navbar ── */
+  .zay-navbar {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--background);
+  }
+
+  .zay-navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background-color: color-mix(in oklab, var(--background) 82%, transparent);
+    backdrop-filter: saturate(1.6) blur(14px);
+  }
+
+  .zay-navbar-inner {
+    display: flex;
+    height: 3.5rem;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .zay-navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .zay-navbar-links {
+    display: none;
+    align-items: center;
+    gap: 0.125rem;
+  }
+
+  .zay-navbar-links a,
+  .zay-navbar-drawer a {
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-sm);
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-navbar-links a:hover,
+  .zay-navbar-links a[aria-current="page"],
+  .zay-navbar-drawer a:hover,
+  .zay-navbar-drawer a[aria-current="page"] {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-navbar-actions {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    margin-inline-start: auto;
+  }
+
+  .zay-navbar-menu-btn {
+    margin-inline-start: auto;
+  }
+
+  .zay-navbar-drawer {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .zay-navbar-drawer a {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9375rem;
+  }
+
+  .zay-navbar-drawer-actions {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-navbar-links,
+    .zay-navbar-actions {
+      display: flex;
+    }
+
+    .zay-navbar-menu-btn {
+      display: none;
+    }
+  }
+
+  /* ── Hero ── */
+  .zay-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: 4.5rem 3.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .zay-hero {
+      padding-block: 7rem 5rem;
+    }
+  }
+
+  .zay-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(50rem 26rem at 50% -6rem, var(--brand-soft), transparent 70%),
+      linear-gradient(to right, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
+    background-size: auto, 3.5rem 3.5rem, 3.5rem 3.5rem;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, #000 35%, transparent 100%);
+  }
+
+  .zay-hero-copy {
+    max-width: 44rem;
+  }
+
+  .zay-hero-centered .zay-hero-copy {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .zay-hero-badge {
+    margin-bottom: 1.5rem;
+  }
+
+  .zay-hero-title {
+    margin: 0;
+    font-size: clamp(2.5rem, 1.4rem + 4.6vw, 4.25rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+  }
+
+  .zay-hero-lead {
+    margin: 1.5rem 0 0;
+    max-width: 36rem;
+    color: var(--muted-foreground);
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  .zay-hero-centered .zay-hero-lead {
+    margin-inline: auto;
+  }
+
+  .zay-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+  }
+
+  .zay-hero-centered .zay-hero-actions {
+    justify-content: center;
+  }
+
+  .zay-hero-note {
+    margin: 1rem 0 0;
+    color: var(--subtle-foreground);
+    font-size: 0.8125rem;
+  }
+
+  .zay-hero-media {
+    margin-top: 3.5rem;
+  }
+
+  .zay-hero-split .zay-container {
+    display: grid;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .zay-hero-split .zay-hero-media {
+    margin-top: 0;
+  }
+
+  @media (min-width: 64rem) {
+    .zay-hero-split .zay-container {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+
+  /* Browser frame */
+  .zay-frame {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--background);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .zay-frame-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    padding-inline: 1rem;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--surface);
+  }
+
+  .zay-frame-dots {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  .zay-frame-dots i {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 999px;
+    background-color: var(--border-strong);
+  }
+
+  .zay-frame-url {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.1875rem 2rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+  }
+
+  /* ── Section heading & page header ── */
+  .zay-section-heading {
+    max-width: 40rem;
+  }
+
+  .zay-section-heading-centered {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .zay-section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .zay-section-heading > p:not(.zay-eyebrow) {
+    margin: 0.875rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .zay-page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .zay-page-header-title {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .zay-page-header-lead {
+    margin: 0.5rem 0 0;
+    max-width: 38rem;
+    color: var(--muted-foreground);
+    line-height: 1.6;
+  }
+
+  .zay-page-header-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .zay-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    margin: 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .zay-facts dt {
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  .zay-facts dd {
+    margin: 0.125rem 0 0;
+    font-weight: 500;
+  }
+
+  /* ── Logo cloud ── */
+  .zay-logos {
+    text-align: center;
+  }
+
+  .zay-logos-title {
+    margin: 0 0 1.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+  }
+
+  .zay-logos ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem 3rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .zay-logos li {
+    color: var(--subtle-foreground);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    opacity: 0.85;
+    transition: color var(--duration) var(--ease-out), opacity var(--duration) var(--ease-out);
+  }
+
+  .zay-logos li:hover {
+    color: var(--foreground);
+    opacity: 1;
+  }
+
+  .zay-logos svg {
+    height: 1.5rem;
+    width: auto;
+  }
+
+  /* ── Features ── */
+  .zay-features {
+    display: grid;
+    gap: 2.5rem 2rem;
+  }
+
+  @media (min-width: 40rem) {
+    .zay-features-2,
+    .zay-features-3,
+    .zay-features-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .zay-features-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .zay-features-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .zay-feature {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .zay-feature h3 {
+    margin: 1rem 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .zay-feature p {
+    margin: 0.375rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .zay-features-cards {
+    gap: 1rem;
+  }
+
+  .zay-features-cards .zay-feature {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--background);
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
+  }
+
+  a.zay-feature:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  /* Split */
+  .zay-split {
+    display: grid;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .zay-split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 4rem;
+    }
+
+    .zay-split-reverse .zay-split-copy {
+      order: 2;
+    }
+  }
+
+  .zay-split-copy h2 {
+    margin: 0;
+    font-size: clamp(1.625rem, 1.2rem + 1.3vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .zay-split-description {
+    margin: 1rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  .zay-split-points {
+    display: grid;
+    gap: 0.625rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .zay-split-points li {
+    display: flex;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+  }
+
+  .zay-split-points svg {
+    flex: none;
+    margin-top: 0.1875rem;
+    color: var(--link);
+  }
+
+  .zay-split-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  /* ── Stats & metrics ── */
+  .zay-stats {
+    display: grid;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--background);
+    overflow: hidden;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-stats {
+      grid-template-columns: repeat(var(--zay-stats-cols, 3), minmax(0, 1fr));
+    }
+  }
+
+  .zay-stats > div {
+    padding: 1.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-stats > div:last-child {
+    border-bottom: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-stats > div {
+      border-bottom: 0;
+      border-inline-end: 1px solid var(--border);
+    }
+
+    .zay-stats > div:last-child {
+      border-inline-end: 0;
+    }
+  }
+
+  .zay-stats dd {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .zay-stats dt {
+    margin-top: 0.375rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+  }
+
+  .zay-metrics {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+
+  .zay-metric {
+    position: relative;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--card);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .zay-metric-icon {
+    position: absolute;
+    top: 1.25rem;
+    inset-inline-end: 1.25rem;
+    color: var(--subtle-foreground);
+  }
+
+  .zay-metric-icon svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  /* ── Testimonials ── */
+  .zay-testimonials {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-testimonials {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .zay-testimonials {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .zay-testimonial {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--background);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .zay-testimonial blockquote {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .zay-testimonial figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .zay-testimonial figcaption strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  .zay-testimonial figcaption span span {
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  /* ── Pricing ── */
+  .zay-pricing-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .zay-plans {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-plans-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 50rem;
+      margin-inline: auto;
+    }
+
+    .zay-plans-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .zay-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--background);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .zay-plan-featured {
+    position: relative;
+    border-color: var(--brand-border);
+    background-image: linear-gradient(to bottom, var(--brand-soft), transparent 40%);
+    box-shadow: 0 0 0 1px var(--brand-border), var(--shadow-md);
+  }
+
+  .zay-plan-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .zay-plan-head h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .zay-plan-description {
+    margin: -0.5rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .zay-plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    margin: 0;
+  }
+
+  .zay-plan-price span {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .zay-plan-price small {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+  }
+
+  .zay-plan-features {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--border);
+    list-style: none;
+  }
+
+  .zay-plan-features li {
+    display: flex;
+    gap: 0.625rem;
+    font-size: 0.875rem;
+  }
+
+  .zay-plan-features svg {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.125rem;
+    color: var(--link);
+  }
+
+  /* ── FAQ ── */
+  .zay-faq {
+    max-width: 44rem;
+    margin-inline: auto;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── CTA & newsletter ── */
+  .zay-cta {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    gap: 1.5rem;
+    padding: 3rem 2rem;
+    border-radius: var(--radius-xl);
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow: hidden;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-cta {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      padding: 3.5rem 3rem;
+    }
+  }
+
+  .zay-cta-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(30rem 16rem at 100% 0%, var(--brand-soft), transparent 70%),
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: auto, 3rem 3rem, 3rem 3rem;
+  }
+
+  .zay-cta h2 {
+    margin: 0;
+    font-size: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .zay-cta p {
+    margin: 0.75rem 0 0;
+    max-width: 32rem;
+    color: var(--muted-foreground);
+    line-height: 1.6;
+  }
+
+  .zay-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .zay-newsletter {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--surface);
+  }
+
+  @media (min-width: 48rem) {
+    .zay-newsletter {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 3rem;
+      padding: 2.5rem;
+    }
+  }
+
+  .zay-newsletter h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .zay-newsletter p {
+    margin: 0.375rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+  }
+
+  .zay-newsletter-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .zay-newsletter-row .zay-input {
+    flex: 1;
+  }
+
+  .zay-newsletter .zay-newsletter-note {
+    margin-top: 0.625rem;
+    color: var(--subtle-foreground);
+    font-size: 0.8125rem;
+  }
+
+  /* ── Footer ── */
+  .zay-footer {
+    border-top: 1px solid var(--border);
+    background-color: var(--background);
+  }
+
+  .zay-footer-top {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: 3.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-footer-top {
+      grid-template-columns: minmax(0, 2fr) repeat(var(--zay-footer-cols, 3), minmax(0, 1fr));
+    }
+  }
+
+  .zay-footer-brand {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .zay-footer-brand p {
+    max-width: 20rem;
+    margin: 0.75rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.6;
+  }
+
+  .zay-footer h3 {
+    margin: 0 0 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .zay-footer ul {
+    display: grid;
+    gap: 0.625rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .zay-footer li a {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-footer li a:hover {
+    color: var(--foreground);
+  }
+
+  .zay-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  /* ── Auth ── */
+  .zay-auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    min-height: 100%;
+    padding: 2.5rem 1rem;
+    background-color: var(--surface);
+  }
+
+  .zay-auth-card {
+    width: 100%;
+    max-width: 24rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background-color: var(--background);
+    box-shadow: var(--shadow-md);
+  }
+
+  .zay-auth-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .zay-auth-title {
+    margin: 0;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .zay-auth-description {
+    margin: 0.375rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .zay-auth-body {
+    margin-top: 1.5rem;
+  }
+
+  .zay-auth-providers {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .zay-auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block: 1.25rem;
+    color: var(--subtle-foreground);
+    font-size: 0.75rem;
+  }
+
+  .zay-auth-divider::before,
+  .zay-auth-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background-color: var(--border);
+  }
+
+  .zay-auth-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .zay-auth-label-row a,
+  .zay-auth-footer a {
+    color: var(--link);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .zay-auth-label-row a:hover,
+  .zay-auth-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .zay-auth-footer {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+  }
+
+  .zay-auth-footer a {
+    font-size: inherit;
+  }
+
+  .zay-auth-terms {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .zay-auth-otp {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ── App shell & sidebar ── */
+  .zay-shell {
+    display: flex;
+    min-height: 100%;
+    background-color: var(--background);
+  }
+
+  .zay-shell-aside {
+    display: none;
+    width: 15rem;
+    flex: none;
+    border-inline-end: 1px solid var(--border);
+    background-color: var(--surface);
+  }
+
+  @media (min-width: 64rem) {
+    .zay-shell-aside {
+      display: block;
+    }
+
+    .zay-shell-menu-btn {
+      display: none;
+    }
+  }
+
+  .zay-shell-main {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .zay-shell-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 3.5rem;
+    flex: none;
+    padding-inline: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-shell-header-content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .zay-shell-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow: auto;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-shell-content {
+      padding: 2rem;
+    }
+  }
+
+  .zay-shell-drawer {
+    padding: 0 !important;
+    width: min(16rem, 85vw) !important;
+    background-color: var(--surface) !important;
+  }
+
+  .zay-sidebar {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .zay-sidebar-brand {
+    display: flex;
+    align-items: center;
+    height: 3.5rem;
+    flex: none;
+    padding-inline: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .zay-sidebar-nav {
+    flex: 1;
+    padding: 0.5rem 0.625rem 1rem;
+    overflow-y: auto;
+  }
+
+  .zay-sidebar-group + .zay-sidebar-group {
+    margin-top: 1.25rem;
+  }
+
+  .zay-sidebar-label {
+    margin: 0 0 0.25rem;
+    padding-inline: 0.625rem;
+    color: var(--subtle-foreground);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .zay-sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.4375rem 0.625rem;
+    border-radius: var(--radius-md);
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-sidebar-nav a > span:not(.zay-badge) {
+    flex: 1;
+  }
+
+  .zay-sidebar-nav a svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+  }
+
+  .zay-sidebar-nav a:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-sidebar-nav a[aria-current="page"] {
+    background-color: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-xs), 0 0 0 1px var(--border);
+  }
+
+  .zay-sidebar-footer {
+    padding: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Data table ── */
+  .zay-datatable {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--card);
+    box-shadow: var(--shadow-xs);
+    overflow: hidden;
+  }
+
+  .zay-datatable-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-datatable-head h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .zay-datatable-head p {
+    margin: 0.125rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  .zay-datatable-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .zay-datatable .zay-datatable-wrap {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .zay-datatable-empty {
+    padding-block: 3rem !important;
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+
+  .zay-datatable-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  /* ── Settings ── */
+  .zay-settings {
+    display: grid;
+    gap: 2.5rem;
+    max-width: 56rem;
+  }
+
+  .zay-settings-section {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .zay-settings-section + .zay-settings-section {
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (min-width: 48rem) {
+    .zay-settings-section {
+      grid-template-columns: 14rem minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  .zay-settings-copy h2 {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .zay-settings-copy p {
+    margin: 0.375rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .zay-settings-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--card);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .zay-settings-fields {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .zay-settings-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border);
+    border-end-start-radius: var(--radius-lg);
+    border-end-end-radius: var(--radius-lg);
+    background-color: var(--surface);
+  }
+
+  /* ── Status page ── */
+  .zay-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 1rem;
+    text-align: center;
+  }
+
+  .zay-status-code {
+    margin: 0;
+    background-image: linear-gradient(to bottom, var(--foreground), transparent 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(5rem, 3rem + 10vw, 9rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    opacity: 0.18;
+  }
+
+  .zay-status-title {
+    margin: -1.5rem 0 0;
+    font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .zay-status-body {
+    max-width: 28rem;
+    margin: 0.875rem 0 0;
+    color: var(--muted-foreground);
+    line-height: 1.6;
+  }
+
+  .zay-status-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+}

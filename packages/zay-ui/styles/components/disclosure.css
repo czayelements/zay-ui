@@ -1,0 +1,427 @@
+/* Navigation and disclosure: tabs, accordion, collapsible, breadcrumb, pagination, navigation menu. */
+
+@layer components {
+  /* Tabs: a sliding indicator that follows the active tab. */
+  .zay-tabs-list {
+    position: relative;
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    height: 2.5rem;
+    padding-inline: 0.75rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-tab svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .zay-tab:hover,
+  .zay-tab[data-active] {
+    color: var(--foreground);
+  }
+
+  .zay-tab[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .zay-tab-indicator {
+    position: absolute;
+    inset-block-end: -1px;
+    inset-inline-start: 0;
+    height: 2px;
+    width: var(--active-tab-width);
+    translate: var(--active-tab-left) 0;
+    border-radius: 999px;
+    background-color: var(--foreground);
+    transition: translate var(--duration) var(--ease-spring), width var(--duration) var(--ease-spring);
+  }
+
+  .zay-tab-panel {
+    padding-top: 1rem;
+    outline: 0;
+  }
+
+  /* Pill variant: a segmented control. */
+  .zay-tabs-list-pill {
+    display: inline-flex;
+    gap: 0;
+    padding: 2px;
+    border: 0;
+    border-radius: calc(var(--radius-md) + 2px);
+    background-color: var(--muted);
+  }
+
+  .zay-tab-pill {
+    z-index: 1;
+    height: calc(var(--control-md) - 6px);
+    padding-inline: 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .zay-tab-indicator-pill {
+    inset-block: 2px;
+    inset-block-end: 2px;
+    height: auto;
+    z-index: 0;
+    border-radius: var(--radius-sm);
+    background-color: var(--background);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Accordion */
+  .zay-accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding-block: 1rem;
+    border: 0;
+    background: transparent;
+    color: var(--foreground);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .zay-accordion-trigger:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 4px;
+  }
+
+  .zay-accordion-trigger svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    color: var(--muted-foreground);
+    transition: transform var(--duration) var(--ease-spring);
+  }
+
+  .zay-accordion-trigger[data-panel-open] svg {
+    transform: rotate(180deg);
+  }
+
+  .zay-accordion-panel,
+  .zay-collapsible-panel {
+    height: var(--accordion-panel-height, var(--collapsible-panel-height));
+    overflow: hidden;
+    transition: height var(--duration) var(--ease-out);
+  }
+
+  .zay-accordion-panel[data-starting-style],
+  .zay-accordion-panel[data-ending-style],
+  .zay-collapsible-panel[data-starting-style],
+  .zay-collapsible-panel[data-ending-style] {
+    height: 0;
+  }
+
+  .zay-accordion-content {
+    padding-bottom: 1rem;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .zay-collapsible-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--foreground);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .zay-collapsible-trigger svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform var(--duration) var(--ease-spring);
+  }
+
+  .zay-collapsible-trigger[data-panel-open] svg {
+    transform: rotate(180deg);
+  }
+
+  /* Breadcrumb */
+  .zay-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+  }
+
+  .zay-breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .zay-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-breadcrumb a:hover {
+    color: var(--foreground);
+  }
+
+  .zay-breadcrumb [aria-current="page"] {
+    color: var(--foreground);
+    font-weight: 500;
+  }
+
+  .zay-breadcrumb-separator svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    opacity: 0.6;
+  }
+
+  /* Pagination */
+  .zay-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .zay-page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--control-md);
+    height: var(--control-md);
+    padding-inline: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--muted-foreground);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-page:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-page[aria-current="page"] {
+    border-color: var(--border-strong);
+    background-color: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .zay-page[aria-disabled="true"] {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .zay-page svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /* Navigation menu */
+  .zay-nav {
+    position: relative;
+    min-width: max-content;
+  }
+
+  .zay-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .zay-nav-trigger,
+  .zay-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: var(--control-md);
+    padding-inline: 0.75rem;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--muted-foreground);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-nav-trigger:hover,
+  .zay-nav-link:hover,
+  .zay-nav-trigger[data-popup-open],
+  .zay-nav-link[aria-current="page"] {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  .zay-nav-icon {
+    display: flex;
+    transition: transform var(--duration) var(--ease-spring);
+  }
+
+  .zay-nav-icon svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .zay-nav-trigger[data-popup-open] .zay-nav-icon {
+    transform: rotate(180deg);
+  }
+
+  .zay-nav-positioner {
+    --easing: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration: 0.35s;
+    z-index: var(--z-popup);
+    width: var(--positioner-width);
+    height: var(--positioner-height);
+    max-width: var(--available-width);
+    transition-property: top, left, right, bottom;
+    transition-duration: var(--duration);
+    transition-timing-function: var(--easing);
+  }
+
+  .zay-nav-positioner::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: -10px;
+    height: 10px;
+  }
+
+  .zay-nav-popup {
+    position: relative;
+    width: var(--popup-width);
+    height: var(--popup-height);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--popover);
+    box-shadow: var(--shadow-lg);
+    transform-origin: var(--transform-origin);
+    transition-property: opacity, transform, width, height;
+    transition-duration: var(--duration);
+    transition-timing-function: var(--easing);
+  }
+
+  .zay-nav-popup[data-starting-style],
+  .zay-nav-popup[data-ending-style] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  .zay-nav-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .zay-nav-content {
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 26rem;
+    height: 100%;
+    padding: 0.5rem;
+    transition:
+      opacity calc(var(--duration) * 0.5) ease,
+      transform var(--duration) var(--easing);
+  }
+
+  .zay-nav-content[data-starting-style],
+  .zay-nav-content[data-ending-style] {
+    opacity: 0;
+  }
+
+  .zay-nav-content[data-starting-style][data-activation-direction="left"] {
+    transform: translateX(-30%);
+  }
+
+  .zay-nav-content[data-starting-style][data-activation-direction="right"] {
+    transform: translateX(30%);
+  }
+
+  .zay-nav-content[data-ending-style][data-activation-direction="left"] {
+    transform: translateX(30%);
+  }
+
+  .zay-nav-content[data-ending-style][data-activation-direction="right"] {
+    transform: translateX(-30%);
+  }
+
+  .zay-nav-item-link {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-md);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .zay-nav-item-link:hover {
+    background-color: var(--muted);
+  }
+
+  .zay-nav-item-title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .zay-nav-item-description {
+    margin: 0.125rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+}

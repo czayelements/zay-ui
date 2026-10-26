@@ -1,66 +1,81 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata: Metadata = { title: "Getting started" };
+import { Alert } from "@czayelements/zay-ui";
 
-const code = (s: string) => (
-  <pre className="docs-code" style={{ borderTop: "1px solid var(--border)", borderRadius: "var(--radius-lg)", marginTop: "1rem" }}>
-    <code>{s.trim()}</code>
-  </pre>
-);
+import { CodeBlock } from "@/components/code-block";
+import { components } from "@/lib/entries";
 
-export default function GettingStarted() {
+export const metadata: Metadata = { title: "Introduction" };
+
+export default function Introduction() {
   return (
     <>
-      <h1>Getting started</h1>
-      <p>
-        czay-ui is a calm, tonal design system for React: design tokens as CSS variables, accessible components built on{" "}
-        <a href="https://base-ui.com" className="text-link underline underline-offset-4">Base UI</a>, and ready-made page blocks. Tailwind CSS v4 is
-        optional; it only adds utilities mapped to the tokens.
+      <h1>Introduction</h1>
+      <p className="dx-lead">
+        zay-ui is a set of accessible React components and ready-made page blocks, built on <a href="https://base-ui.com">Base UI</a> and styled with plain CSS.
+        It works with or without Tailwind CSS, themes with a single variable, and is MIT licensed.
       </p>
 
-      <h2>Install</h2>
-      {code(`npm install @czayelements/czay-ui@alpha`)}
-      <p>React 18.2 or newer is required. The package is in alpha: expect small breaking changes until 0.1 is final.</p>
+      <Alert tone="info" title="Alpha">
+        zay-ui is under active development. APIs can still change between 0.x releases.
+      </Alert>
 
-      <h2>Import the styles once</h2>
-      <p>With Tailwind CSS v4, in your global stylesheet:</p>
-      {code(`@import "tailwindcss";
-@import "@czayelements/czay-ui/styles.css";`)}
-      <p>Without Tailwind, import the plain CSS files instead (tokens, base layer, components, blocks):</p>
-      {code(`@import "@czayelements/czay-ui/tokens.css";
-@import "@czayelements/czay-ui/base.css";
-@import "@czayelements/czay-ui/components.css";
-@import "@czayelements/czay-ui/blocks.css";`)}
-      <p>
-        Fonts come from your app: define <code>--font-sans</code>, <code>--font-display</code> and <code>--font-mono</code> (with <code>next/font</code>,
-        its <code>variable</code> option does exactly that). Without them the system font stack is used.
-      </p>
+      <h2 id="what-you-get">What you get</h2>
+      <ul>
+        <li>
+          <strong>{components.length} components</strong>: buttons and forms, dialogs, drawers, menus, command palette, toasts, tabs, tables and more. Interactive ones are Base UI
+          underneath, so focus management, keyboard support and aria are handled.
+        </li>
+        <li>
+          <strong>Blocks</strong>: complete sections and pages (heroes, pricing, dashboards, auth, settings) you can drop in and edit.
+        </li>
+        <li>
+          <strong>One accent, one variable</strong>: change <code>--hue</code> and every button, ring and highlight follows. Light and dark are built in.
+        </li>
+        <li>
+          <strong>Plain CSS under React</strong>: components print <code>zay-</code> classes, so the same look works in HTML, other frameworks, or on a link.
+        </li>
+      </ul>
 
-      <h2>Use components</h2>
-      {code(`import { Button, Card, CardTitle, Dialog, DialogTrigger, DialogContent } from "@czayelements/czay-ui";
-import { Hero, FeatureGrid } from "@czayelements/czay-ui/blocks";`)}
+      <h2 id="how-it-works">How it works</h2>
       <p>
-        Static components (Button, Card, Badge …) have no hooks and work in server components. Interactive ones (Dialog, Menu, Tabs …) carry{" "}
-        <code>&quot;use client&quot;</code>. Every component accepts <code>className</code> and the props of the element it renders.
+        Install the package, import one stylesheet, and use the components. Server components stay server components: static parts such as <code>Button</code>, <code>Card</code> and{" "}
+        <code>Badge</code> have no client code, only the interactive ones carry <code>&quot;use client&quot;</code>.
       </p>
+      <CodeBlock
+        lang="tsx"
+        code={`import { Button, Card, CardTitle } from "@czayelements/zay-ui";
 
-      <h2>Plain CSS classes</h2>
-      <p>
-        Each component is a <code>zay-</code> class, so the same look works without React: <code>class=&quot;zay-btn zay-btn-primary&quot;</code>. Everything is in{" "}
-        <code>@layer components</code>, so your utilities and CSS always win.
-      </p>
+export default function Page() {
+  return (
+    <Card>
+      <CardTitle>Hello</CardTitle>
+      <Button variant="primary">Get started</Button>
+    </Card>
+  );
+}`}
+      />
 
-      <h2>Dark mode</h2>
-      <p>
-        Add the <code>dark</code> class (or <code>data-theme=&quot;dark&quot;</code>) to <code>&lt;html&gt;</code>. With <code>next-themes</code> use{" "}
-        <code>attribute=&quot;class&quot;</code>. For a layout without flashes, set the class before first paint (see this site&apos;s layout).
-      </p>
-
-      <h2>Portals</h2>
-      <p>
-        Popups render in a portal. The base layer already makes <code>body</code> a positioned element; if you use your own root wrapper, give it{" "}
-        <code>isolation: isolate</code> so popups always stack above the page.
-      </p>
+      <h2 id="next-steps">Next steps</h2>
+      <div className="dx-card-grid">
+        <Link className="dx-index-card" href="/docs/installation/">
+          <strong>Installation</strong>
+          <span>Install the package and the stylesheet.</span>
+        </Link>
+        <Link className="dx-index-card" href="/docs/theming/">
+          <strong>Theming</strong>
+          <span>Re-colour everything with one variable.</span>
+        </Link>
+        <Link className="dx-index-card" href="/docs/components/">
+          <strong>Components</strong>
+          <span>Browse every component with live examples.</span>
+        </Link>
+        <Link className="dx-index-card" href="/docs/blocks/">
+          <strong>Blocks</strong>
+          <span>Copy complete sections and pages.</span>
+        </Link>
+      </div>
     </>
   );
 }

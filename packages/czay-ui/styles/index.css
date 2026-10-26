@@ -1,6 +1,0 @@
-/* czay-ui: tokens, base layer, components and blocks. Import after "tailwindcss". */
-@import "./tokens.css";
-@import "./tailwind.css";
-@import "./base.css";
-@import "./components.css";
-@import "./blocks.css";

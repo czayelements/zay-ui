@@ -1,13 +1,22 @@
-import type { ReactNode } from "react";
+import type { ComponentType } from "react";
 
-/** A live preview with its source underneath. */
-export function Demo({ code, children, block }: { code: string; children: ReactNode; block?: boolean }) {
-  return (
-    <div className="mt-4">
-      <div className={block ? "docs-preview docs-preview-block" : "docs-preview"}>{children}</div>
-      <pre className="docs-code">
-        <code>{code.trim()}</code>
-      </pre>
-    </div>
-  );
+import { demoSource, highlight } from "@/lib/code";
+
+import { DemoFrame } from "./demo-frame";
+
+/** Renders one demo component live next to its own source. */
+export async function Demo({
+  file,
+  name,
+  component: Component,
+  layout,
+}: {
+  file: string;
+  name: string;
+  component: ComponentType;
+  layout?: "center" | "block" | "tall";
+}) {
+  const code = await demoSource(file, name);
+  const codeHtml = await highlight(code);
+  return <DemoFrame preview={<Component />} codeHtml={codeHtml} code={code} layout={layout} />;
 }

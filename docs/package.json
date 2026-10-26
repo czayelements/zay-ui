@@ -1,8 +1,8 @@
 {
-  "name": "czay-ui-docs",
+  "name": "zay-ui-docs",
   "version": "0.1.0",
   "private": true,
-  "description": "Documentation site for czay-ui, built with czay-ui.",
+  "description": "Documentation site for zay-ui, built with zay-ui.",
   "scripts": {
     "dev": "next dev --port 3200",
     "build": "next build",
@@ -10,10 +10,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@czayelements/czay-ui": "workspace:*",
+    "@czayelements/zay-ui": "workspace:*",
     "next": "16.4.3",
     "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "react-dom": "19.3.1",
+    "shiki": "^4.5.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

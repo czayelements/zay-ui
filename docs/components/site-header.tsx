@@ -1,29 +1,39 @@
 import Link from "next/link";
 
-import { ThemeToggle } from "./theme-toggle";
+import { GithubIcon } from "@czayelements/zay-ui";
+
+import { searchItems } from "@/lib/nav";
+
+import { MobileNav } from "./mobile-nav";
+import { Search } from "./search";
+import { ThemeControls } from "./theme-controls";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-      <div className="zay-container flex h-14 items-center justify-between gap-4">
-        <Link href="/" className="font-display text-lg font-medium tracking-tight no-underline">
-          czay<span className="text-link">-ui</span>
+    <header className="dx-header">
+      <div className="zay-container dx-header-inner">
+        <Link href="/" className="dx-logo" aria-label="zay-ui home">
+          <span className="dx-logo-mark">z</span>
+          zay-ui
         </Link>
-        <nav className="flex items-center gap-1 text-sm">
-          <Link className="zay-btn zay-btn-ghost zay-btn-sm" href="/docs">
-            Docs
-          </Link>
-          <Link className="zay-btn zay-btn-ghost zay-btn-sm" href="/docs/components/button">
-            Components
-          </Link>
-          <Link className="zay-btn zay-btn-ghost zay-btn-sm" href="/docs/blocks/hero">
-            Blocks
-          </Link>
-          <a className="zay-btn zay-btn-ghost zay-btn-sm" href="https://github.com/czayelements/zay-ui">
-            GitHub
-          </a>
-          <ThemeToggle />
+        <nav className="dx-header-nav" aria-label="Main">
+          <Link href="/docs/">Docs</Link>
+          <Link href="/docs/components/">Components</Link>
+          <Link href="/docs/blocks/">Blocks</Link>
+          <Link href="/docs/theming/">Theming</Link>
         </nav>
+        <div className="ml-auto flex min-w-0 flex-1 items-center justify-end gap-1.5">
+          <Search items={searchItems()} />
+          <a
+            href="https://github.com/czayelements/zay-ui"
+            className="zay-btn zay-btn-ghost zay-btn-sm zay-btn-icon"
+            aria-label="GitHub"
+          >
+            <GithubIcon />
+          </a>
+          <ThemeControls />
+          <MobileNav />
+        </div>
       </div>
     </header>
   );
