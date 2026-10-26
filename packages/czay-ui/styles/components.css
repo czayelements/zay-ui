@@ -1,0 +1,1013 @@
+/*
+ * czay-ui component styles.
+ *
+ * Every component is a plain CSS class prefixed `zay-` (.zay-btn, .zay-card …).
+ * The React components only print these classes, so the same look works without
+ * React: in plain HTML, in another framework, on a link (`class="zay-btn zay-btn-primary"`).
+ * Everything lives in @layer components, so your own utilities and CSS win.
+ *
+ * Interactive parts (dialog, menu, tabs …) are Base UI components; they are styled
+ * through the data attributes Base UI sets ([data-open], [data-checked],
+ * [data-starting-style] …).
+ */
+
+@layer components {
+  /* ── Button ─────────────────────────────────────────────────── */
+  .zay-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding-inline: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color var(--duration) var(--ease-out),
+      border-color var(--duration) var(--ease-out),
+      color var(--duration) var(--ease-out),
+      transform var(--duration-fast) ease;
+  }
+
+  .zay-btn:hover {
+    background-color: var(--surface);
+    border-color: var(--border-strong);
+  }
+
+  .zay-btn:active {
+    transform: scale(0.98);
+  }
+
+  .zay-btn svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+  }
+
+  .zay-btn:disabled,
+  .zay-btn[aria-disabled="true"],
+  .zay-btn[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .zay-btn-sm {
+    height: 2rem;
+    padding-inline: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .zay-btn-lg {
+    height: 3rem;
+    padding-inline: 1.375rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.9375rem;
+  }
+
+  .zay-btn-icon {
+    width: 2.5rem;
+    padding-inline: 0;
+  }
+
+  .zay-btn-icon.zay-btn-sm {
+    width: 2rem;
+  }
+
+  .zay-btn-icon.zay-btn-lg {
+    width: 3rem;
+  }
+
+  /* The main action on the page: solid ink. */
+  .zay-btn-primary {
+    background-color: var(--foreground);
+    border-color: var(--foreground);
+    color: var(--background);
+    box-shadow: var(--inset-edge);
+  }
+
+  .zay-btn-primary:hover {
+    background-color: color-mix(in oklch, var(--foreground) 82%, var(--background));
+    border-color: color-mix(in oklch, var(--foreground) 82%, var(--background));
+  }
+
+  /* The conversion button: sage fill, ink text. One per page. */
+  .zay-btn-brand {
+    background-color: var(--brand);
+    border-color: var(--brand);
+    color: var(--brand-foreground);
+  }
+
+  .zay-btn-brand:hover {
+    background-color: color-mix(in oklch, var(--brand) 88%, white);
+    border-color: color-mix(in oklch, var(--brand) 88%, white);
+  }
+
+  .zay-btn-brand svg {
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .zay-btn-brand:hover svg {
+    transform: translateX(3px);
+  }
+
+  .zay-btn-outline {
+    background-color: var(--background);
+    border-color: var(--border);
+  }
+
+  .zay-btn-ghost {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  .zay-btn-ghost:hover {
+    background-color: color-mix(in oklch, var(--foreground) 5%, transparent);
+    border-color: transparent;
+  }
+
+  .zay-btn-destructive {
+    background-color: var(--destructive);
+    border-color: var(--destructive);
+    color: #fff;
+  }
+
+  .zay-btn-destructive:hover {
+    background-color: color-mix(in oklch, var(--destructive) 88%, black);
+    border-color: color-mix(in oklch, var(--destructive) 88%, black);
+  }
+
+  /* Looks like a link, behaves like a button. */
+  .zay-btn-link {
+    height: auto;
+    padding-inline: 0;
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .zay-btn-link:hover {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  /* ── Surfaces ───────────────────────────────────────────────── */
+  .zay-card {
+    background-color: var(--surface);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Paper card: sits on a tinted section. */
+  .zay-card-paper {
+    background-color: var(--background);
+  }
+
+  /* The one card that lifts off the page (a product screenshot). */
+  .zay-card-raised {
+    background-color: var(--background);
+    box-shadow: var(--shadow-2);
+  }
+
+  .zay-card-interactive {
+    transition:
+      background-color var(--duration) var(--ease-out),
+      border-color var(--duration) var(--ease-out);
+  }
+
+  .zay-card-interactive:hover {
+    background-color: var(--background);
+    border-color: var(--border-strong);
+  }
+
+  .zay-card-pad-sm {
+    padding: 1rem;
+  }
+
+  .zay-card-pad-md {
+    padding: 1.5rem;
+  }
+
+  .zay-card-pad-lg {
+    padding: 2rem;
+  }
+
+  .zay-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .zay-card-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .zay-card-description {
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .zay-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  /* A tinted full-width section background. */
+  .zay-band {
+    background-color: var(--surface);
+  }
+
+  /* Reversed panel: closing call to action, dark showcase. */
+  .zay-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background-color: var(--inverse);
+    color: var(--inverse-foreground);
+  }
+
+  .zay-panel-muted {
+    opacity: 0.7;
+  }
+
+  /* Hairline construction grid, fading toward the edges. Put inside .zay-panel. */
+  .zay-grid-lines {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, color-mix(in oklch, currentColor 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklch, currentColor 7%, transparent) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at 70% 40%, #000 0%, transparent 70%);
+  }
+
+  /* ── Badge, tag, icon box, kbd ──────────────────────────────── */
+  .zay-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 1.875rem;
+    padding-inline: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background-color: var(--background);
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* A badge with a label chip on its left: "New  Something shipped". */
+  .zay-badge-label {
+    padding: 0.125rem 0.5rem;
+    margin-inline-start: -0.5rem;
+    border-radius: 9999px;
+    background-color: var(--brand);
+    color: var(--brand-foreground);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .zay-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .zay-icon-box {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background-color: var(--background);
+    color: var(--link);
+  }
+
+  .zay-icon-box svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .zay-icon-box-sm {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .zay-icon-box-sm svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .zay-icon-box-lg {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .zay-icon-box-solid {
+    border-color: var(--brand);
+    background-color: var(--brand);
+    color: var(--brand-foreground);
+  }
+
+  .zay-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.375rem;
+    height: 1.375rem;
+    padding-inline: 0.3125rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    background-color: var(--surface);
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+  }
+
+  /* ── Form controls ──────────────────────────────────────────── */
+  .zay-label {
+    display: inline-block;
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .zay-input,
+  .zay-textarea,
+  .zay-select-trigger {
+    display: flex;
+    width: 100%;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    transition:
+      border-color var(--duration-fast) ease,
+      box-shadow var(--duration-fast) ease;
+  }
+
+  .zay-textarea {
+    min-height: 6rem;
+    resize: vertical;
+  }
+
+  .zay-input::placeholder,
+  .zay-textarea::placeholder {
+    color: var(--subtle-foreground);
+  }
+
+  .zay-input:hover,
+  .zay-textarea:hover,
+  .zay-select-trigger:hover {
+    border-color: var(--subtle-foreground);
+  }
+
+  .zay-input:focus-visible,
+  .zay-textarea:focus-visible,
+  .zay-select-trigger:focus-visible {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 22%, transparent);
+  }
+
+  .zay-input:disabled,
+  .zay-textarea:disabled,
+  .zay-select-trigger[data-disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .zay-input[aria-invalid="true"],
+  .zay-textarea[aria-invalid="true"],
+  .zay-input[data-invalid],
+  .zay-textarea[data-invalid] {
+    border-color: var(--destructive);
+  }
+
+  .zay-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .zay-field-description {
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  .zay-field-error {
+    color: var(--destructive);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  /* Checkbox and switch */
+  .zay-checkbox {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xs);
+    background-color: var(--background);
+    color: var(--background);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast) ease,
+      border-color var(--duration-fast) ease;
+  }
+
+  .zay-checkbox[data-checked],
+  .zay-checkbox[data-indeterminate] {
+    background-color: var(--foreground);
+    border-color: var(--foreground);
+  }
+
+  .zay-checkbox[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .zay-checkbox-indicator {
+    display: flex;
+  }
+
+  .zay-checkbox-indicator[data-unchecked] {
+    display: none;
+  }
+
+  .zay-checkbox-indicator svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .zay-switch {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    width: 2.5rem;
+    height: 1.5rem;
+    padding: 2px;
+    border: 1px solid var(--border-strong);
+    border-radius: 9999px;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease;
+  }
+
+  .zay-switch[data-checked] {
+    background-color: var(--foreground);
+    border-color: var(--foreground);
+  }
+
+  .zay-switch[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .zay-switch-thumb {
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 9999px;
+    background-color: var(--background);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+    transition: translate var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-switch-thumb[data-checked] {
+    translate: 1rem 0;
+  }
+
+  /* ── Skeleton, separator, progress ──────────────────────────── */
+  .zay-skeleton {
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    background-image: linear-gradient(90deg, transparent, color-mix(in oklch, var(--foreground) 6%, transparent), transparent);
+    background-size: 200% 100%;
+    animation: zay-shimmer 1.6s ease-in-out infinite;
+  }
+
+  @keyframes zay-shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  .zay-separator {
+    flex: none;
+    border: 0;
+    background-color: var(--border);
+  }
+
+  .zay-separator[data-orientation="horizontal"],
+  hr.zay-separator {
+    height: 1px;
+    width: 100%;
+  }
+
+  .zay-separator[data-orientation="vertical"] {
+    width: 1px;
+    align-self: stretch;
+  }
+
+  .zay-progress {
+    position: relative;
+    height: 0.5rem;
+    overflow: hidden;
+    border-radius: 9999px;
+    background-color: var(--border);
+  }
+
+  .zay-progress-indicator {
+    height: 100%;
+    border-radius: inherit;
+    background-color: var(--foreground);
+    transition: width var(--duration) var(--ease-out);
+  }
+
+  /* ── Callout ────────────────────────────────────────────────── */
+  .zay-callout {
+    --callout: var(--info);
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid color-mix(in oklch, var(--callout) 28%, var(--border));
+    border-radius: var(--radius-md);
+    background-color: color-mix(in oklch, var(--callout) 7%, var(--background));
+    color: var(--foreground);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .zay-callout-success {
+    --callout: var(--success);
+  }
+
+  .zay-callout-warning {
+    --callout: var(--warning);
+  }
+
+  .zay-callout-danger {
+    --callout: var(--destructive);
+  }
+
+  .zay-callout > svg {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+    color: var(--callout);
+  }
+
+  .zay-callout-title {
+    font-weight: 600;
+  }
+
+  /* ── Popups: dialog, popover, tooltip, menu, select ─────────── */
+  .zay-backdrop {
+    position: fixed;
+    inset: 0;
+    min-height: 100dvh;
+    z-index: var(--z-overlay);
+    background-color: rgb(0 0 0 / 0.4);
+    transition: opacity var(--duration) var(--ease-out);
+  }
+
+  .zay-backdrop[data-starting-style],
+  .zay-backdrop[data-ending-style] {
+    opacity: 0;
+  }
+
+  /* iOS 26 Safari: a fixed backdrop must be absolute to cover the visual viewport. */
+  @supports (-webkit-touch-callout: none) {
+    .zay-backdrop {
+      position: absolute;
+    }
+  }
+
+  .zay-dialog-viewport {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .zay-dialog {
+    position: relative;
+    width: min(32rem, 100%);
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    box-shadow: var(--shadow-3);
+    transition:
+      opacity var(--duration) var(--ease-out),
+      scale var(--duration) var(--ease-out);
+  }
+
+  .zay-dialog[data-starting-style],
+  .zay-dialog[data-ending-style] {
+    opacity: 0;
+    scale: 0.97;
+  }
+
+  .zay-dialog-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .zay-dialog-description {
+    margin-top: 0.375rem;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .zay-dialog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .zay-positioner {
+    z-index: var(--z-popup);
+  }
+
+  .zay-popup {
+    max-width: min(22rem, calc(100vw - 2rem));
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    box-shadow: var(--shadow-3);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    transform-origin: var(--transform-origin);
+    transition:
+      opacity var(--duration-fast) var(--ease-out),
+      scale var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-popup[data-starting-style],
+  .zay-popup[data-ending-style] {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  .zay-tooltip {
+    max-width: 18rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--inverse);
+    color: var(--inverse-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    transform-origin: var(--transform-origin);
+    transition:
+      opacity var(--duration-fast) var(--ease-out),
+      scale var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-tooltip[data-starting-style],
+  .zay-tooltip[data-ending-style] {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  .zay-menu {
+    min-width: 11rem;
+    padding: 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    box-shadow: var(--shadow-3);
+    transform-origin: var(--transform-origin);
+    transition:
+      opacity var(--duration-fast) var(--ease-out),
+      scale var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-menu[data-starting-style],
+  .zay-menu[data-ending-style] {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  .zay-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    text-decoration: none;
+    cursor: default;
+    outline: none;
+    user-select: none;
+  }
+
+  .zay-menu-item svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    color: var(--muted-foreground);
+  }
+
+  .zay-menu-item[data-highlighted] {
+    background-color: var(--surface);
+  }
+
+  .zay-menu-item[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .zay-menu-item-destructive {
+    color: var(--destructive);
+  }
+
+  .zay-menu-label {
+    padding: 0.375rem 0.625rem;
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .zay-menu-separator {
+    height: 1px;
+    margin: 0.25rem -0.25rem;
+    background-color: var(--border);
+  }
+
+  .zay-select-trigger {
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-align: start;
+  }
+
+  .zay-select-trigger [data-placeholder] {
+    color: var(--subtle-foreground);
+  }
+
+  .zay-select-icon {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    color: var(--muted-foreground);
+  }
+
+  .zay-select-popup {
+    min-width: var(--anchor-width);
+    max-height: var(--available-height);
+    overflow-y: auto;
+    padding: 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    box-shadow: var(--shadow-3);
+    transform-origin: var(--transform-origin);
+    transition:
+      opacity var(--duration-fast) var(--ease-out),
+      scale var(--duration-fast) var(--ease-out);
+  }
+
+  .zay-select-popup[data-starting-style],
+  .zay-select-popup[data-ending-style] {
+    opacity: 0;
+    scale: 0.97;
+  }
+
+  .zay-select-item {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    padding: 0.375rem 0.625rem 0.375rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+    outline: none;
+    cursor: default;
+    user-select: none;
+  }
+
+  .zay-select-item[data-highlighted] {
+    background-color: var(--surface);
+  }
+
+  .zay-select-item[data-disabled] {
+    opacity: 0.5;
+  }
+
+  .zay-select-item-indicator svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .zay-select-item-text {
+    grid-column: 2;
+  }
+
+  /* ── Tabs ───────────────────────────────────────────────────── */
+  .zay-tabs-list {
+    position: relative;
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-tab {
+    position: relative;
+    padding: 0.625rem 0.875rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color var(--duration-fast) ease;
+  }
+
+  .zay-tab:hover {
+    color: var(--foreground);
+  }
+
+  .zay-tab[data-active] {
+    color: var(--foreground);
+  }
+
+  .zay-tab[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .zay-tab-indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: var(--active-tab-width);
+    height: 2px;
+    translate: var(--active-tab-left) 0;
+    background-color: var(--foreground);
+    transition:
+      translate var(--duration) var(--ease-out),
+      width var(--duration) var(--ease-out);
+  }
+
+  .zay-tab-panel {
+    padding-top: 1rem;
+  }
+
+  /* ── Accordion ──────────────────────────────────────────────── */
+  .zay-accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zay-accordion-trigger {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .zay-accordion-trigger svg {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    color: var(--muted-foreground);
+    transition: rotate var(--duration) var(--ease-out);
+  }
+
+  .zay-accordion-trigger[data-panel-open] svg {
+    rotate: 180deg;
+  }
+
+  .zay-accordion-panel {
+    height: var(--accordion-panel-height);
+    overflow: hidden;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    transition: height var(--duration) var(--ease-out);
+  }
+
+  .zay-accordion-panel[data-starting-style],
+  .zay-accordion-panel[data-ending-style] {
+    height: 0;
+  }
+
+  .zay-accordion-content {
+    padding-bottom: 1rem;
+  }
+
+  /* ── Layout helpers ─────────────────────────────────────────── */
+  .zay-container {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-container {
+      padding-inline: 2rem;
+    }
+  }
+
+  .zay-section {
+    padding-block: 4rem;
+  }
+
+  @media (min-width: 48rem) {
+    .zay-section {
+      padding-block: 6rem;
+    }
+  }
+
+  .zay-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

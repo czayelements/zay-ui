@@ -1,0 +1,12 @@
+{
+  "name": "czay-ui-monorepo",
+  "private": true,
+  "description": "czay-ui: a calm, tonal design system built on Base UI. The npm package lives in packages/czay-ui, the documentation site in docs/.",
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "build": "pnpm --filter @czayelements/czay-ui build",
+    "typecheck": "pnpm --filter @czayelements/czay-ui typecheck && pnpm --filter czay-ui-docs typecheck",
+    "dev:docs": "pnpm --filter czay-ui-docs dev",
+    "build:docs": "pnpm --filter @czayelements/czay-ui build && pnpm --filter czay-ui-docs build"
+  }
+}

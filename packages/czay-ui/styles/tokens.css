@@ -1,0 +1,138 @@
+/*
+ * czay-ui tokens.
+ *
+ * Every measurement of the system lives here as a CSS custom property, so the
+ * components, the blocks and your own CSS read the same values. Plain CSS: no
+ * build step and no Tailwind needed (tailwind.css maps these to utilities).
+ *
+ * The look is calm and tonal: warm paper, moss-grey ink, hairline borders and a
+ * single sage accent. Colour is a signal (an action, a link, focus), never
+ * decoration. Dark mode redefines the same names under `.dark` or
+ * `[data-theme="dark"]`.
+ *
+ * Re-theme by overriding the semantic tokens (--brand, --link, --background …)
+ * after importing this file.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* ── Surfaces ── */
+  --background: #fafaf8; /* the page */
+  --surface: #f1f1ec; /* cards, wells, hover fills */
+  --popover: #fafaf8; /* menus, dialogs, tooltips */
+  --inverse: #1b1d1b; /* closing panels, reversed sections */
+  --inverse-foreground: #ffffff;
+  --inverse-surface: #272927;
+
+  /* ── Text ── */
+  --foreground: #1b1d1b;
+  --muted-foreground: #62665f; /* secondary text, >= 5.6:1 on --background */
+  --subtle-foreground: #8d9189; /* placeholders, decorative text */
+
+  /* ── Lines ── */
+  --border: #e1e2db; /* hairlines and dividers */
+  --border-strong: #d2d4cc; /* inputs, hovered borders */
+
+  /* ── Accent ── */
+  --brand: #a9c2b2; /* filled call-to-action and selected marks */
+  --brand-foreground: #1b1d1b; /* text on --brand, >= 8.9:1 */
+  --link: #3f6652; /* links and accent text, >= 6.2:1 */
+  --on-link: #ffffff; /* text on a --link fill */
+  --ring: #44705c; /* focus ring */
+  --notice: #e3ebcf; /* announcement strips */
+
+  /* ── Status ── */
+  --destructive: #c8281d;
+  --success: #2f7d5b;
+  --warning: #9a6a12;
+  --info: var(--link);
+
+  /* ── Semantic aliases (shadcn/ui naming, so existing snippets keep working) ── */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover-foreground: var(--foreground);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: var(--surface);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface);
+  --accent: var(--surface);
+  --accent-foreground: var(--foreground);
+  --input: var(--border-strong);
+
+  /* ── Elevation ── */
+  --shadow-1: none;
+  --shadow-2: 0 0 0 1px rgb(0 0 0 / 0.08), 0 0.6px 2.3px -1.25px rgb(0 0 0 / 0.18), 0 2.3px 8.7px -2.5px rgb(0 0 0 / 0.16),
+    0 10px 38px -3.75px rgb(0 0 0 / 0.06);
+  --shadow-3: 0 0 0 1px rgb(0 0 0 / 0.06), 0 10px 38px -3.75px rgb(0 0 0 / 0.1), 0 32px 64px -24px rgb(0 0 0 / 0.12);
+  --inset-edge: rgb(255 255 255 / 0.13) 0 0 0 2px inset;
+
+  /* ── Shape ── */
+  --radius-xs: 0.25rem; /* 4px: kbd, inline marks */
+  --radius-sm: 0.5rem; /* 8px: inputs, icon plates */
+  --radius-md: 0.75rem; /* 12px: buttons, list rows */
+  --radius-lg: 1rem; /* 16px: cards, panels, popups */
+  --radius-xl: 1.25rem; /* 20px: large surfaces */
+
+  /* ── Type ── */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ── Motion ── */
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration: 250ms;
+
+  /* ── Layering (popups sit above everything) ── */
+  --z-popup: 50;
+  --z-overlay: 60;
+}
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #111311;
+  --surface: #1a1c1a;
+  --popover: #1a1c1a;
+  --inverse: #f2f3ef;
+  --inverse-foreground: #111311;
+  --inverse-surface: #e1e2db;
+
+  --foreground: #f2f3ef;
+  --muted-foreground: #adb0a8;
+  --subtle-foreground: #9a9e96;
+
+  --border: #2b2d2a;
+  --border-strong: #3f423e;
+
+  --link: #a8c3b3;
+  --on-link: #14201a;
+  --ring: #8fb5a0;
+  --notice: #1f2a22;
+
+  --destructive: #f97066;
+  --success: #6fcf9d;
+  --warning: #e0b04a;
+
+  --shadow-2: 0 0 0 1px rgb(255 255 255 / 0.07), 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-3: 0 0 0 1px rgb(255 255 255 / 0.08), 0 12px 32px -8px rgb(0 0 0 / 0.55), 0 28px 56px -20px rgb(0 0 0 / 0.45);
+}
+
+/* The always-dark panel: opt in with class="zay-dark" (or use a block that does). */
+.zay-dark {
+  --background: #1b1d1b;
+  --surface: #272927;
+  --foreground: #ffffff;
+  --muted-foreground: #adb0a8;
+  --subtle-foreground: #9a9e96;
+  --border: #3f423e;
+  --border-strong: #3f423e;
+  --link: #a8c3b3;
+  --on-link: #14201a;
+  --ring: #8fb5a0;
+  color: var(--foreground);
+}

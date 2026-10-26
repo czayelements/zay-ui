@@ -1,0 +1,43 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/34f6ni5v-ynhd.js"
+3:I[641,["$2"],"default"]
+4:I[59295,["$2"],"default"]
+8:"/_next/static/chunks/2a0fypy66i0ce.js"
+9:"/_next/static/chunks/0qg4b67xxbo3j.js"
+a:I[7216,["$2","$8","$9"],""]
+b:I[40485,["$2","$8","$9"],"ThemeToggle"]
+c:I[49584,["$2","$8","$9"],"DocsNav"]
+1b:"ViewportBoundary"
+1c:I[33522,["$2"],"$1b"]
+1d:"MetadataBoundary"
+1e:I[33522,["$2"],"$1d"]
+1f:"$Sreact.suspense"
+:HL["/_next/static/chunks/3u940cnjfyaef.css","style"]
+6:X
+10:X
+10:C
+13:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[[["$","h1",null,{"children":"Callout, Progress, Skeleton, Separator"}],["$","p",null,{"children":"Notes, progress, loading placeholders and dividers."}],[["$","div","0",{"className":"mt-4","children":[["$","div",null,{"className":"docs-preview","children":["$","div",null,{"className":"grid w-full gap-3","children":[["$","div",null,{"role":"note","className":"zay-callout","children":[["$","svg",null,{"width":16,"height":16,"viewBox":"0 0 16 16","fill":"none","stroke":"currentColor","strokeWidth":1.75,"strokeLinecap":"round","strokeLinejoin":"round","aria-hidden":true,"children":[["$","circle",null,{"cx":"8","cy":"8","r":"6"}],["$","path",null,{"d":"M8 7.25v3.5M8 5.2v.05"}]]}],["$","div",null,{"children":[["$","p",null,{"className":"zay-callout-title","children":"Heads up"}],["$","div",null,{"children":"A note with context."}]]}]]}],"$L14","$L15","$L16"]}]}],"$L17"]}],"$L18"],null],null,"$L19"]}],"p":"$@1a","v":null,"s":"$6"}}]]
+11:[["children",{"s":{"n":"slug","t":"d","k":"feedback","s":[]},"h":65632,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]]}],"p":"$@12","v":"$10","s":"$6"},"c":"$Q13"}]]
+e:[["children",{"s":"components","h":131168,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]]}],"p":"$@f","v":"$10","s":"$6"},"c":"$Q11"}]]
+7:[["children",{"s":"docs","h":131168,"d":{"r":["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/2a0fypy66i0ce.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0qg4b67xxbo3j.js","async":true}]],[["$","header",null,{"className":"sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur","children":["$","div",null,{"className":"zay-container flex h-14 items-center justify-between gap-4","children":[["$","$La",null,{"href":"/","className":"font-display text-lg font-medium tracking-tight no-underline","children":["czay",["$","span",null,{"className":"text-link","children":"-ui"}]]}],["$","nav",null,{"className":"flex items-center gap-1 text-sm","children":[["$","$La",null,{"className":"zay-btn zay-btn-ghost zay-btn-sm","href":"/docs","children":"Docs"}],["$","$La",null,{"className":"zay-btn zay-btn-ghost zay-btn-sm","href":"/docs/components/button","children":"Components"}],["$","$La",null,{"className":"zay-btn zay-btn-ghost zay-btn-sm","href":"/docs/blocks/hero","children":"Blocks"}],["$","a",null,{"className":"zay-btn zay-btn-ghost zay-btn-sm","href":"https://github.com/czayelements/zay-ui","children":"GitHub"}],["$","$Lb",null,{}]]}]]}]}],["$","div",null,{"className":"zay-container docs-shell py-10","children":[["$","aside",null,{"className":"lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100dvh-6rem)] lg:overflow-y-auto","children":["$","$Lc",null,{}]}],["$","main",null,{"className":"docs-prose min-w-0 pb-20","children":["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]}]]}]]]}],"p":"$@d","v":null,"s":"$6"},"c":"$Qe"}]]
+0:{"t":{"t":{"s":"","h":131152,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3u940cnjfyaef.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/34f6ni5v-ynhd.js","async":true}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"try{var t=localStorage.getItem(\"czay-ui-theme\");if(t===\"dark\"||(!t&&matchMedia(\"(prefers-color-scheme: dark)\").matches))document.documentElement.classList.add(\"dark\")}catch(e){}"}}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]]}]]}],"p":"$@5","v":null,"s":"$6"},"c":"$Q7"},"h":{"r":["$","$1","h",{"children":[null,["$","$L1c",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L1e",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$1f",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Callout, Progress, Skeleton, Separator · czay-ui"}],["$","meta","1",{"name":"description","content":"A calm, tonal design system for React and Tailwind CSS v4, built on Base UI."}]]}]}],null]}],null]}],"p":"$@20","v":null,"s":"$6"}},"a":"$@21","u":"$@22","b":"7dsOEID8BfpV0HZffmQvz"}
+23:I[64335,["$2","$8","$9"],"Progress"]
+24:I[65959,["$2","$8","$9"],"Separator"]
+25:I[33522,["$2"],"OutletBoundary"]
+14:["$","div",null,{"role":"note","className":"zay-callout zay-callout-success","children":[["$","svg",null,{"width":16,"height":16,"viewBox":"0 0 16 16","fill":"none","stroke":"currentColor","strokeWidth":1.75,"strokeLinecap":"round","strokeLinejoin":"round","aria-hidden":true,"children":[["$","circle",null,{"cx":"8","cy":"8","r":"6"}],["$","path",null,{"d":"m5.5 8.25 1.75 1.75 3.25-3.5"}]]}],["$","div",null,{"children":[null,["$","div",null,{"children":"Saved."}]]}]]}]
+15:["$","div",null,{"role":"alert","className":"zay-callout zay-callout-warning","children":[["$","svg",null,{"width":16,"height":16,"viewBox":"0 0 16 16","fill":"none","stroke":"currentColor","strokeWidth":1.75,"strokeLinecap":"round","strokeLinejoin":"round","aria-hidden":true,"children":[["$","path",null,{"d":"M8 2.5 14 13H2L8 2.5Z"}],["$","path",null,{"d":"M8 6.75v2.75M8 11.4v.05"}]]}],["$","div",null,{"children":[null,["$","div",null,{"children":"Check this first."}]]}]]}]
+16:["$","div",null,{"role":"alert","className":"zay-callout zay-callout-danger","children":[["$","svg",null,{"width":16,"height":16,"viewBox":"0 0 16 16","fill":"none","stroke":"currentColor","strokeWidth":1.75,"strokeLinecap":"round","strokeLinejoin":"round","aria-hidden":true,"children":[["$","path",null,{"d":"M8 2.5 14 13H2L8 2.5Z"}],["$","path",null,{"d":"M8 6.75v2.75M8 11.4v.05"}]]}],["$","div",null,{"children":[null,["$","div",null,{"children":"Something failed."}]]}]]}]
+17:["$","pre",null,{"className":"docs-code","children":["$","code",null,{"children":"<Callout title=\"Heads up\">A note with context.</Callout>\n<Callout tone=\"success\">Saved.</Callout>\n<Callout tone=\"warning\">Check this first.</Callout>\n<Callout tone=\"danger\">Something failed.</Callout>"}]}]
+18:["$","div","1",{"className":"mt-4","children":[["$","div",null,{"className":"docs-preview","children":["$","div",null,{"className":"grid w-full max-w-xs gap-4","children":[["$","$L23",null,{"value":64}],["$","div",null,{"aria-hidden":true,"className":"zay-skeleton h-4 w-40"}],["$","$L24",null,{}]]}]}],["$","pre",null,{"className":"docs-code","children":["$","code",null,{"children":"<Progress value={64} className=\"w-64\" />\n<Skeleton className=\"h-4 w-40\" />\n<Separator className=\"w-64\" />"}]}]]}]
+19:["$","$L25",null,{"children":["$","$1f",null,{"name":"Next.MetadataOutlet","children":"$@26"}]}]
+6:300
+26:null
+22:true
+6:C
+21:0
+12:"$undefined"
+f:"$undefined"
+d:"$undefined"
+5:"$undefined"
+20:"$undefined"
+1a:"$undefined"
