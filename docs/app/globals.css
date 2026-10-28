@@ -50,9 +50,9 @@ html {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 0.4rem;
-  background-image: linear-gradient(135deg, oklch(0.68 0.19 var(--hue)), oklch(0.5 0.22 calc(var(--hue) + 30)));
+  background-color: var(--brand);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 1px 2px rgb(0 0 0 / 0.2);
-  color: #fff;
+  color: var(--brand-foreground);
   font-size: 0.8125rem;
   font-weight: 700;
 }
@@ -560,14 +560,14 @@ html {
 }
 
 .dx-gradient-text {
-  background-image: linear-gradient(135deg, var(--foreground) 30%, oklch(0.55 0.22 var(--hue)) 100%);
+  background-image: linear-gradient(135deg, var(--foreground) 40%, var(--muted-foreground) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .dark .dx-gradient-text {
-  background-image: linear-gradient(135deg, var(--foreground) 30%, oklch(0.75 0.17 var(--hue)) 100%);
+  background-image: linear-gradient(135deg, var(--foreground) 40%, var(--muted-foreground) 100%);
 }
 
 .dx-showcase {

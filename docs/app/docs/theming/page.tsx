@@ -11,8 +11,10 @@ const tokens = [
   ["border", "Hairlines"],
   ["foreground", "Text"],
   ["muted-foreground", "Secondary text"],
-  ["brand", "The accent"],
-  ["brand-soft", "Accent backgrounds"],
+  ["card", "Cards, white on the canvas"],
+  ["brand", "Filled actions"],
+  ["ember", "The one accent, badges only"],
+  ["brand-soft", "Tinted backgrounds"],
   ["destructive", "Errors"],
   ["success", "Positive"],
   ["warning", "Caution"],
@@ -23,20 +25,20 @@ export default function Theming() {
   return (
     <>
       <h1>Theming</h1>
-      <p className="dx-lead">Every colour, radius, shadow and size is a CSS variable. Change one number to re-colour everything.</p>
+      <p className="dx-lead">Every colour, radius, shadow and size is a CSS variable. The kit is near-monochrome by default: zinc surfaces, ink-black actions and one ember accent.</p>
 
-      <h2 id="accent">The accent colour</h2>
+      <h2 id="accent">Colour</h2>
       <p>
-        The accent is defined in OKLCH from a single hue, so buttons, rings, links, selected states and tinted backgrounds always stay in harmony and meet contrast in light and dark. Try the
-        palette button in the header: it changes <code>--hue</code> on this page.
+        The page is a <code>#f4f4f5</code> canvas with white cards and <code>#ececee</code> hairlines. The primary action is ink black (<code>--brand</code>, near white in dark mode). The only vivid colour
+        is <code>--ember</code> (<code>#ff5a00</code>), kept for small badges: <code>{'<Badge variant="ember">'}</code>. Re-colour the actions by overriding <code>--brand</code>.
       </p>
-      <CodeBlock lang="css" code={`:root {\n  --hue: 160; /* 268 indigo (default), 245 blue, 160 emerald, 70 amber, 10 rose … */\n}`} />
+      <CodeBlock lang="css" code={`:root {\n  --brand: #1d4ed8;\n  --brand-hover: #1e40af;\n  --brand-foreground: #ffffff;\n}`} />
 
       <h2 id="radius">Roundness</h2>
       <p>
-        Every corner derives from <code>--radius</code>. Set it to <code>0</code> for a sharp look, <code>0.75rem</code> for a soft one.
+        Every corner derives from <code>--radius</code>. The default is <code>0.875rem</code> (buttons and inputs); cards use <code>--radius-card</code> (<code>2.25rem</code>) and badges <code>--radius-badge</code>. Set <code>--radius</code> to <code>0</code> for a sharp look.
       </p>
-      <CodeBlock lang="css" code={`:root {\n  --radius: 0.375rem;\n}`} />
+      <CodeBlock lang="css" code={`:root {\n  --radius: 0.5rem;\n}`} />
 
       <h2 id="tokens">Semantic tokens</h2>
       <p>Components use meaning, not colours. Override any of these after importing the stylesheet:</p>
@@ -56,7 +58,7 @@ export default function Theming() {
         lang="css"
         code={`:root {
   --background: #fffdf8;
-  --brand: oklch(0.6 0.2 40);
+  --card: #ffffff;
 }
 
 .dark {

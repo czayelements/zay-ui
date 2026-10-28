@@ -1,6 +1,6 @@
 # zay-ui
 
-Accessible React components and ready-made blocks on [Base UI](https://base-ui.com), themable with one CSS variable. Works with or without Tailwind CSS v4. MIT licensed.
+Accessible React components and ready-made blocks on [Base UI](https://base-ui.com), near-monochrome and themable with CSS variables. Works with or without Tailwind CSS v4. MIT licensed.
 
 **Docs and live examples: https://czayelements.github.io/zay-ui/**
 
@@ -26,7 +26,7 @@ export default function Page() {
 
 - **47 components**: buttons and forms, dialogs, drawers, menus, command palette, toasts, tabs, tables and more. The interactive ones are Base UI underneath, so focus, keyboard and aria are handled.
 - **18 blocks**: a landing page, a dashboard, settings, authentication, pricing, FAQ, footer and more, to copy and edit.
-- **One variable to re-colour everything**: `:root { --hue: 160 }`. Light and dark are built in.
+- **Quiet by design**: zinc surfaces, hairline borders, ink-black actions and a single ember accent (`#ff5a00`) for badges. Light and dark are built in.
 - **Plain CSS under React**: components print `zay-` classes, so the same look works without React or Tailwind, and your own utilities always win (everything is in `@layer components`).
 - **Server-component friendly**: static components have no client code.
 

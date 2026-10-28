@@ -11,7 +11,7 @@ import { categories, components } from "@/lib/entries";
 
 const features = [
   { icon: <LockIcon />, title: "Accessible by default", text: "Dialogs, menus, selects and tabs are Base UI primitives: focus management, keyboard support and aria handled." },
-  { icon: <PaletteIcon />, title: "One variable to theme", text: "Change --hue and the whole system follows: buttons, focus rings, links and soft backgrounds, light and dark." },
+  { icon: <PaletteIcon />, title: "Quiet by design", text: "Zinc surfaces, hairline borders, ink-black actions and one ember accent for badges. Light and dark are built in." },
   { icon: <CodeIcon />, title: "Plain CSS, any stack", text: "Components are zay- classes. Works with Tailwind v4, without it, or on a plain link." },
   { icon: <ZapIcon />, title: "Server-component friendly", text: "Static parts carry no client code. Only interactive components ship JavaScript." },
   { icon: <LayersIcon />, title: "Blocks, not just parts", text: "Complete sections and pages to start from: heroes, pricing, dashboards, auth and settings." },

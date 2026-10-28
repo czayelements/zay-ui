@@ -40,8 +40,9 @@ Mount `TooltipProvider` and `Toaster` once near the root if you use tooltips or 
 
 ```css
 :root {
-  --hue: 160;      /* accent: 268 indigo (default), 245 blue, 160 emerald, 70 amber, 10 rose */
-  --radius: 0.5rem; /* every corner derives from this */
+  --brand: #09090b;  /* filled actions (ink black; near white in dark) */
+  --ember: #ff5a00;  /* the one vivid accent, for badges */
+  --radius: 0.875rem; /* buttons and inputs; cards use --radius-card (2.25rem) */
 }
 ```
 

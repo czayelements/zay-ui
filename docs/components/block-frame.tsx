@@ -33,7 +33,7 @@ export function BlockFrame({
   const [auto, setAuto] = useState(height ?? 400);
   const frame = useRef<HTMLIFrameElement>(null);
 
-  /* The iframe shares our origin, so it can follow our theme and accent and report its own height. */
+  /* The iframe shares our origin, so it can follow our theme and report its own height. */
   useEffect(() => {
     const el = frame.current;
     if (!el) return;
@@ -42,8 +42,6 @@ export function BlockFrame({
       const doc = el.contentDocument;
       if (!doc) return;
       doc.documentElement.classList.toggle("dark", root.classList.contains("dark"));
-      const hue = root.style.getPropertyValue("--hue");
-      if (hue) doc.documentElement.style.setProperty("--hue", hue);
     };
     const measure = () => {
       const doc = el.contentDocument;

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /* Sets the theme and accent before first paint so there is no flash. */
-const bootScript = `try{var d=document.documentElement,t=localStorage.getItem("zay-ui-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))d.classList.add("dark");var h=localStorage.getItem("zay-ui-hue");if(h)d.style.setProperty("--hue",h)}catch(e){}`;
+const bootScript = `try{var d=document.documentElement,t=localStorage.getItem("zay-ui-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))d.classList.add("dark");}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

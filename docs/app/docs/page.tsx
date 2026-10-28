@@ -31,7 +31,7 @@ export default function Introduction() {
           <strong>Blocks</strong>: complete sections and pages (heroes, pricing, dashboards, auth, settings) you can drop in and edit.
         </li>
         <li>
-          <strong>One accent, one variable</strong>: change <code>--hue</code> and every button, ring and highlight follows. Light and dark are built in.
+          <strong>Quiet by design</strong>: zinc surfaces, ink-black actions and a single ember accent for badges. Light and dark are built in.
         </li>
         <li>
           <strong>Plain CSS under React</strong>: components print <code>zay-</code> classes, so the same look works in HTML, other frameworks, or on a link.
