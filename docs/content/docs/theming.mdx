@@ -1,0 +1,73 @@
+---
+title: "Theming"
+description: "Every colour, radius, shadow and size is a CSS variable. The kit is near-monochrome by default: zinc surfaces, ink-black actions and one ember accent."
+---
+## Colour
+
+The page is a `#f4f4f5` canvas with white cards and `#ececee` hairlines. The primary action is ink black (`--brand`, near white in dark mode). The only vivid colour is `--ember` (`#ff5a00`), kept for small badges: `<Badge variant="ember">`. Re-colour the actions by overriding `--brand`.
+
+```css
+:root {
+  --brand: #1d4ed8;
+  --brand-hover: #1e40af;
+  --brand-foreground: #ffffff;
+}
+```
+
+## Roundness
+
+Every corner derives from `--radius`. The default is `0.875rem` (buttons and inputs); cards use `--radius-card` (`2.25rem`) and badges `--radius-badge`. Set `--radius` to `0` for a sharp look.
+
+```css
+:root {
+  --radius: 0.5rem;
+}
+```
+
+## Semantic tokens
+
+Components use meaning, not colours. Override any of these after importing the stylesheet:
+
+<Tokens tokens={[
+  ["background", "The page"],
+  ["surface", "Panels and sidebars"],
+  ["muted", "Hover fills and tracks"],
+  ["border", "Hairlines"],
+  ["foreground", "Text"],
+  ["muted-foreground", "Secondary text"],
+  ["card", "Cards, white on the canvas"],
+  ["brand", "Filled actions"],
+  ["ember", "The one accent, badges only"],
+  ["brand-soft", "Tinted backgrounds"],
+  ["destructive", "Errors"],
+  ["success", "Positive"],
+  ["warning", "Caution"],
+  ["inverse", "Reversed panels"],
+]} />
+
+```css
+:root {
+  --background: #fffdf8;
+  --card: #ffffff;
+}
+
+.dark {
+  --background: #0c0a09;
+}
+```
+
+## Tailwind utilities
+
+With Tailwind CSS v4 the tokens become utilities automatically: `bg-background`, `bg-surface`, `text-muted-foreground`, `border-border`, `bg-brand`, `text-link`, `rounded-lg`, `shadow-md`. They follow the theme, so `dark:` variants are rarely needed.
+
+```tsx
+<div className="rounded-lg border border-border bg-surface p-4 text-muted-foreground shadow-sm">…</div>
+```
+
+## Overriding a component
+
+Component styles live in `@layer components`, so your own CSS and Tailwind utilities always win without `!important`:
+
+```tsx
+<Button className="rounded-full px-6">Pill button</Button>
+```

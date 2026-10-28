@@ -1,0 +1,40 @@
+---
+title: "Introduction"
+description: "zay-ui is a set of accessible React components and ready-made page blocks on Base UI, styled with plain CSS, with or without Tailwind CSS."
+---
+<Alert tone="info" title="Alpha">
+zay-ui is under active development. APIs can still change between 0.x releases.
+</Alert>
+
+## What you get
+
+- **Components**: buttons and forms, dialogs, drawers, menus, command palette, toasts, tabs, tables and more. Interactive ones are Base UI underneath, so focus management, keyboard support and aria are handled.
+- **Blocks**: complete sections and pages (heroes, pricing, dashboards, auth, settings) you can drop in and edit.
+- **Quiet by design**: zinc surfaces, ink-black actions and a single ember accent for badges. Light and dark are built in.
+- **Plain CSS under React**: components print `zay-` classes, so the same look works in HTML, other frameworks, or on a link.
+
+## How it works
+
+Install the package, import one stylesheet, and use the components. Server components stay server components: static parts such as `Button`, `Card` and `Badge` have no client code, only the interactive ones carry `"use client"`.
+
+```tsx
+import { Button, Card, CardTitle } from "@czayelements/zay-ui";
+
+export default function Page() {
+  return (
+    <Card>
+      <CardTitle>Hello</CardTitle>
+      <Button variant="primary">Get started</Button>
+    </Card>
+  );
+}
+```
+
+## Next steps
+
+<Cards>
+<CardLink href="/docs/installation/" title="Installation">Install the package and the stylesheet.</CardLink>
+<CardLink href="/docs/theming/" title="Theming">Colours, radii and tokens.</CardLink>
+<CardLink href="/docs/components/" title="Components">Browse every component with live examples.</CardLink>
+<CardLink href="/docs/blocks/" title="Blocks">Copy complete sections and pages.</CardLink>
+</Cards>

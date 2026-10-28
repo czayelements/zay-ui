@@ -1,0 +1,42 @@
+---
+title: "Dark mode"
+description: "Add the dark class to the html element. The tokens do the rest."
+---
+Add the `dark` class (or `data-theme="dark"`) to `<html>`. The tokens do the rest.
+
+## Toggle with a class
+
+The dark palette redefines the same variable names, so nothing in your components changes.
+
+```tsx
+document.documentElement.classList.toggle("dark");
+```
+
+## Avoid a flash on load
+
+Set the class before first paint with a tiny inline script in the document head:
+
+<Titled title="app/layout.tsx">
+
+```tsx
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`;
+
+<html lang="en" suppressHydrationWarning>
+  <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
+  <body>{children}</body>
+</html>
+```
+
+</Titled>
+
+## An always-dark section
+
+Add `zay-dark` to any element to render it in the dark palette regardless of the page theme, for a closing call to action or a code panel:
+
+```tsx
+<section className="zay-dark rounded-xl bg-background p-8">…</section>
+```
+
+## Tailwind's dark variant
+
+`styles.css` registers the `dark:` variant against the same class, so `dark:bg-black` works alongside the tokens.

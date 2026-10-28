@@ -7,13 +7,20 @@
     "dev": "next dev --port 3200",
     "build": "next build",
     "start": "next start --port 3200",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:pages": "node scripts/build-pages.mjs"
   },
   "dependencies": {
     "@czayelements/zay-ui": "workspace:*",
+    "@czayelements/zaystatic": "0.1.0-alpha.3",
+    "github-slugger": "^2.0.0",
+    "gray-matter": "^4.0.3",
     "next": "16.4.3",
+    "next-mdx-remote": "^6.0.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "shiki": "^4.5.0"
   },
   "devDependencies": {

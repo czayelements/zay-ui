@@ -6,7 +6,7 @@
 /* Docs-only styles. Everything visual in the demos comes from zay-ui itself. */
 
 :root {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --header-h: 3.5rem;
 }

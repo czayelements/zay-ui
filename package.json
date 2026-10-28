@@ -7,6 +7,6 @@
     "build": "pnpm --filter @czayelements/zay-ui build",
     "typecheck": "pnpm --filter @czayelements/zay-ui typecheck && pnpm --filter zay-ui-docs typecheck",
     "dev:docs": "pnpm --filter zay-ui-docs dev",
-    "build:docs": "pnpm --filter @czayelements/zay-ui build && pnpm --filter zay-ui-docs build"
+    "build:docs": "pnpm --filter @czayelements/zay-ui build && pnpm --filter zay-ui-docs build:pages"
   }
 }

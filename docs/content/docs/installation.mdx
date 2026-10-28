@@ -1,0 +1,100 @@
+---
+title: "Installation"
+description: "Add the package, import the stylesheet once, and you are ready to build."
+---
+## 1. Install the package
+
+<InstallTabs pkg="@czayelements/zay-ui" />
+
+React 18.2 or newer is required. The package depends on `@base-ui/react` and `clsx`, which are installed with it.
+
+## 2. Import the styles
+
+**With Tailwind CSS v4**, add the import to your global stylesheet, after `tailwindcss`. This also gives you utilities such as `bg-background`, `text-muted-foreground` and `border-border`.
+
+<Titled title="app/globals.css">
+
+```css
+@import "tailwindcss";
+@import "@czayelements/zay-ui/styles.css";
+```
+
+</Titled>
+
+**Without Tailwind**, import the same file from your entry point or any CSS file. Nothing else is needed.
+
+<Titled title="app/layout.tsx">
+
+```tsx
+import "@czayelements/zay-ui/styles.css";
+```
+
+</Titled>
+
+## 3. Add a font (optional)
+
+zay-ui is designed for [DM Sans](https://fonts.google.com/specimen/DM+Sans) and falls back to the system font. With Next.js:
+
+<Titled title="app/layout.tsx">
+
+```tsx
+import { DM_Sans } from "next/font/google";
+
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={dmSans.variable}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+</Titled>
+
+```css
+:root {
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+## 4. Add the providers
+
+Tooltips share their delays through `TooltipProvider`, and toasts need `Toaster`. Both are optional until you use those components. Mount them once near the root, in a client component:
+
+<Titled title="components/providers.tsx">
+
+```tsx
+"use client";
+
+import { Toaster, TooltipProvider } from "@czayelements/zay-ui";
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <TooltipProvider>
+      <Toaster>{children}</Toaster>
+    </TooltipProvider>
+  );
+}
+```
+
+</Titled>
+
+## 5. Use a component
+
+```tsx
+import { Button } from "@czayelements/zay-ui";
+
+export default function Page() {
+  return <Button variant="primary">Hello, zay-ui</Button>;
+}
+```
+
+<Alert tone="info" title="Using Next.js?">
+Interactive components (Dialog, Menu, Tabs …) include `"use client"` themselves, so you can import them from a server component. Only the code that holds state needs to be a client component.
+</Alert>
+
+## Using without Tailwind
+
+Components are plain classes, so you do not need Tailwind at all. If you also want the tokens as CSS variables only, import `@czayelements/zay-ui/tokens.css`; to pick pieces, import `base.css`, `components.css` or `blocks.css` separately.
