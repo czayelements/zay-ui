@@ -14,8 +14,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/zay-ui
       '@czayelements/zaystatic':
-        specifier: 0.1.0-alpha.3
-        version: 0.1.0-alpha.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 0.1.0-alpha.4
+        version: 0.1.0-alpha.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
@@ -135,8 +135,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@czayelements/zaystatic@0.1.0-alpha.3':
-    resolution: {integrity: sha512-ZzAoqkaDeaY9kh+8EdzJOphBF2dCvTOllhsrLV7CMbkQm4DBuqpGZMCmIfSov40OSOXrqZVdN8k+RfxIYUVWww==}
+  '@czayelements/zaystatic@0.1.0-alpha.4':
+    resolution: {integrity: sha512-+CgHqw1OR5NtEJMB2/SKDKEolVd7UK1FsrpBHY0N4eRK4k2Q+TZURjtcdt5rckVFjr5GH5QCRhJkxPoeyrPzFQ==}
     engines: {node: '>=20'}
     peerDependencies:
       react: '>=19'
@@ -1318,7 +1318,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
 
-  '@czayelements/zaystatic@0.1.0-alpha.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@czayelements/zaystatic@0.1.0-alpha.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@dnd-kit/core': 6.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
