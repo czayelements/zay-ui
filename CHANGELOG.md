@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0-alpha.4
+
+- The default font stack no longer lists the commercial "Cosmica" (it was never bundled): DM Sans, then the system fonts.
+
 ## 0.1.0-alpha.3
 
 Visual redesign: a quieter, near-monochrome look.
