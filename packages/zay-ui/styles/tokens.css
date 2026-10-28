@@ -5,15 +5,11 @@
  * the blocks and your own CSS read the same values. Plain CSS: no build step and
  * no Tailwind needed (tailwind.css maps these to utilities).
  *
- * The look is neutral and precise: near-white and near-black surfaces, hairline
- * borders, layered soft shadows and ONE accent. Re-theme the whole system by
- * changing a single number:
- *
- *   :root { --hue: 160; }   // 268 indigo (default), 160 green, 25 red, 230 blue …
- *
- * or override any semantic token (--brand, --radius, --background …) after
- * importing this file. Dark mode redefines the same names under `.dark` or
- * `[data-theme="dark"]`.
+ * The look is editorial zinc: a #f4f4f5 canvas, white 36px cards, hairline
+ * borders instead of shadows, a dark filled action and ONE chromatic colour
+ * (--ember, for badges only). Override any semantic token (--brand, --radius,
+ * --background ...) after importing this file to re-theme it. Dark mode
+ * redefines the same names under `.dark` or `[data-theme="dark"]`.
  */
 
 /*
@@ -25,37 +21,40 @@
   :root {
     color-scheme: light;
 
-    /* ── The one knob: accent hue (OKLCH, 0–360) ── */
-    --hue: 268;
-    --radius: 0.5rem;
+    --radius: 0.875rem; /* buttons and inputs: 14px */
 
     /* ── Surfaces ── */
-    --background: #ffffff; /* the page */
-    --surface: #fafafa; /* cards, panels, sidebars */
-    --muted: #f4f4f5; /* wells, hover fills, tracks */
+    --background: #f4f4f5; /* the page canvas (Paper) */
+    --surface: #fafafa; /* recessed panels inside cards */
+    --muted: #efeff1; /* wells, hover fills, tracks */
     --popover: #ffffff; /* menus, dialogs, tooltips */
     --inverse: #09090b; /* reversed sections */
     --inverse-foreground: #fafafa;
 
     /* ── Text ── */
-    --foreground: #09090b;
-    --muted-foreground: #63636b; /* secondary text, 5.9:1 on --background */
-    --subtle-foreground: #8e8e97; /* placeholders, decorative text */
+    --foreground: #09090b; /* Obsidian */
+    --muted-foreground: #52525b; /* secondary text (Steel) */
+    --subtle-foreground: #71717a; /* placeholders, decorative text */
 
     /* ── Lines ── */
-    --border: #e7e7ea; /* hairlines and dividers */
+    --border: #ececee; /* hairlines and dividers (Cloud) */
     --border-strong: #d4d4d8; /* inputs, hovered borders */
 
-    /* ── Accent ── */
-    --brand: oklch(0.55 0.21 var(--hue)); /* filled actions, selected marks */
-    --brand-hover: oklch(0.5 0.21 var(--hue));
-    --brand-foreground: #ffffff; /* text on --brand, 5.5:1 */
-    --brand-soft: oklch(0.55 0.21 var(--hue) / 0.1); /* tinted backgrounds */
-    --brand-border: oklch(0.55 0.21 var(--hue) / 0.28);
-    --link: oklch(0.5 0.21 var(--hue)); /* links and accent text, 7:1 */
+    /* ── Accent ──
+       The system is achromatic: --brand is the ink itself (the dark filled
+       action). The one chromatic colour is --ember, reserved for badges. */
+    --brand: #09090b; /* filled actions, selected marks */
+    --brand-hover: #27272a;
+    --brand-foreground: #ffffff;
+    --brand-soft: rgb(9 9 11 / 0.05); /* tinted backgrounds */
+    --brand-border: rgb(9 9 11 / 0.14);
+    --link: #09090b; /* links and accent text */
     --on-link: #ffffff;
-    --ring: oklch(0.55 0.21 var(--hue) / 0.55); /* focus ring */
-    --notice: var(--brand-soft); /* announcement strips */
+    --ring: rgb(9 9 11 / 0.45); /* focus ring */
+    --notice: #ffffff; /* announcement strips */
+    --ember: #ff5a00; /* badges only: credentials, highlights */
+    --ember-foreground: #ffffff;
+    --ember-soft: rgb(255 90 0 / 0.1);
 
     /* ── Status (solid colour for text/icons, soft for backgrounds) ── */
     --destructive: oklch(0.55 0.22 27);
@@ -68,7 +67,7 @@
     --info-soft: var(--brand-soft);
 
     /* ── Semantic aliases (shadcn/ui naming, so existing snippets keep working) ── */
-    --card: var(--background);
+    --card: #ffffff; /* cards sit white on the canvas */
     --card-foreground: var(--foreground);
     --popover-foreground: var(--foreground);
     --primary: var(--foreground);
@@ -85,7 +84,8 @@
     --shadow-md: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 4px 8px -2px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.04);
     --shadow-lg: 0 0 0 1px rgb(0 0 0 / 0.05), 0 2px 4px 0 rgb(0 0 0 / 0.04), 0 12px 24px -6px rgb(0 0 0 / 0.1),
       0 28px 56px -16px rgb(0 0 0 / 0.12);
-    --highlight: inset 0 1px 0 0 rgb(255 255 255 / 0.16); /* top edge of solid buttons */
+    --highlight: inset 0 0.5px 0 0 rgb(255 255 255 / 0.5), inset 0 9px 14px -5px rgb(117 123 133 / 0.4); /* lit top edge of solid buttons */
+    --button-ring: 0 0 0 1.5px #2c2e34; /* hairline ring of the dark button */
 
     /* ── Shape (all derive from --radius) ── */
     --radius-xs: calc(var(--radius) * 0.5);
@@ -93,14 +93,18 @@
     --radius-md: var(--radius);
     --radius-lg: calc(var(--radius) * 1.5);
     --radius-xl: calc(var(--radius) * 2);
+    --radius-badge: 0.75rem; /* tags and chips: 12px */
+    --radius-card: 2.25rem; /* cards and large surfaces: 36px */
+    --radius-pill: 10000px;
+    --card-padding: 1.75rem; /* 28px */
 
     /* ── Control sizes ── */
-    --control-sm: 2rem;
-    --control-md: 2.25rem;
-    --control-lg: 2.625rem;
+    --control-sm: 2.25rem;
+    --control-md: 2.75rem;
+    --control-lg: 3rem;
 
     /* ── Type ── */
-    --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-sans: "Cosmica", "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-display: var(--font-sans);
     --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -123,9 +127,10 @@
     color-scheme: dark;
 
     --background: #09090b;
-    --surface: #0f0f12;
+    --surface: #111114;
     --muted: #18181b;
     --popover: #131316;
+    --card: #131316;
     --inverse: #fafafa;
     --inverse-foreground: #09090b;
 
@@ -136,13 +141,15 @@
     --border: #222226;
     --border-strong: #34343a;
 
-    --brand: oklch(0.6 0.2 var(--hue));
-    --brand-hover: oklch(0.66 0.2 var(--hue));
-    --brand-soft: oklch(0.65 0.2 var(--hue) / 0.16);
-    --brand-border: oklch(0.65 0.2 var(--hue) / 0.35);
-    --link: oklch(0.78 0.13 var(--hue));
+    --brand: #fafafa;
+    --brand-hover: #e4e4e7;
+    --brand-foreground: #09090b;
+    --brand-soft: rgb(250 250 250 / 0.08);
+    --brand-border: rgb(250 250 250 / 0.2);
+    --link: #fafafa;
     --on-link: #09090b;
-    --ring: oklch(0.7 0.18 var(--hue) / 0.6);
+    --ring: rgb(250 250 250 / 0.5);
+    --button-ring: 0 0 0 1.5px #d4d4d8;
 
     --destructive: oklch(0.7 0.19 22);
     --success: oklch(0.76 0.16 155);
@@ -160,20 +167,22 @@
 
   /* An always-dark panel: opt in with class="zay-dark" (or use a block that does). */
   .zay-dark {
-    --background: #09090b;
-    --surface: #0f0f12;
-    --muted: #18181b;
+    --background: #18181b;
+    --surface: #1f1f23;
+    --muted: #27272a;
     --popover: #131316;
     --foreground: #fafafa;
     --muted-foreground: #a1a1aa;
     --subtle-foreground: #71717a;
     --border: #222226;
     --border-strong: #34343a;
-    --brand: oklch(0.6 0.2 var(--hue));
-    --brand-soft: oklch(0.65 0.2 var(--hue) / 0.16);
-    --brand-border: oklch(0.65 0.2 var(--hue) / 0.35);
-    --link: oklch(0.78 0.13 var(--hue));
-    --ring: oklch(0.7 0.18 var(--hue) / 0.6);
+    --card: #18181b;
+    --brand: #fafafa;
+    --brand-foreground: #09090b;
+    --brand-soft: rgb(250 250 250 / 0.08);
+    --brand-border: rgb(250 250 250 / 0.2);
+    --link: #fafafa;
+    --ring: rgb(250 250 250 / 0.5);
     color-scheme: dark;
     color: var(--foreground);
   }

@@ -21,7 +21,7 @@
     font-family: var(--font-sans);
     font-size: 0.875rem;
     line-height: 1.25rem;
-    box-shadow: var(--shadow-xs);
+    box-shadow: none;
     transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
   }
 

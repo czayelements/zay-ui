@@ -24,8 +24,7 @@
     font-size: 1rem;
     line-height: 1.5;
     letter-spacing: -0.006em;
-    font-feature-settings: "cv11", "ss01";
-    text-rendering: optimizeLegibility;
+      text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -39,6 +38,8 @@
   h3,
   h4 {
     font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.12;
     letter-spacing: -0.03em;
     text-wrap: balance;
   }

@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 
 import { cx } from "../cx.js";
 
-export type BadgeVariant = "outline" | "brand" | "solid" | "secondary" | "success" | "warning" | "destructive";
+export type BadgeVariant = "outline" | "brand" | "solid" | "ember" | "secondary" | "success" | "warning" | "destructive";
 
 export const badgeClass = (variant: BadgeVariant = "outline", className?: string) =>
   cx("zay-badge", variant !== "outline" && `zay-badge-${variant}`, className);

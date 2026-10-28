@@ -339,7 +339,7 @@
     max-width: 28rem;
     padding: 1.5rem;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--popover);
     color: var(--foreground);
     box-shadow: var(--shadow-lg);

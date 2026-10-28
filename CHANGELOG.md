@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-alpha.3
+
+Visual redesign: a quieter, near-monochrome look.
+
+- **Palette**: zinc scale with a `#f4f4f5` canvas, white cards and `#ececee` hairlines. The primary action is now ink black (`#09090b`; `#fafafa` in dark). `--hue` is removed.
+- **Ember**: one vivid color, `--ember` (`#ff5a00`), for small badges only (`Badge variant="ember"`).
+- **Shape**: cards 36px, buttons and inputs 14px, badges 12px, new `pill` prop on `Button`. Cards carry no shadow.
+- **Buttons**: dark primary with a lit top edge and a 1.5px ring.
+- **Card**: new `tone="dark"`.
+- **Font**: DM Sans replaces the previous default.
+
 ## 0.1.0-alpha.1
 
 First public alpha.

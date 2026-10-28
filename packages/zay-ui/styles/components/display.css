@@ -38,31 +38,38 @@
   /* Card */
   .zay-card {
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card);
     background-color: var(--card);
     color: var(--card-foreground);
-    box-shadow: var(--shadow-xs);
+    box-shadow: none;
   }
 
   .zay-card-surface {
     background-color: var(--surface);
-    box-shadow: none;
   }
 
+  /* Raised: still a hairline, never a drop shadow, but a darker one. */
   .zay-card-raised {
-    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  /* Dark feature card: the inverted band in the rhythm of light cards. */
+  .zay-card-dark {
+    border-color: transparent;
+    background-color: #18181b;
+    color: #ffffff;
   }
 
   .zay-card-pad-sm {
-    padding: 1rem;
-  }
-
-  .zay-card-pad-md {
     padding: 1.25rem;
   }
 
+  .zay-card-pad-md {
+    padding: var(--card-padding);
+  }
+
   .zay-card-pad-lg {
-    padding: 1.75rem;
+    padding: 2.25rem;
   }
 
   .zay-card-interactive {
@@ -77,8 +84,7 @@
 
   .zay-card-interactive:hover {
     border-color: var(--border-strong);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
   .zay-card-header {
@@ -89,10 +95,10 @@
 
   .zay-card-title {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.4;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
 
   .zay-card-description {
@@ -118,14 +124,14 @@
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    height: 1.375rem;
+    height: 1.625rem;
     padding-inline: 0.5rem;
     border: 1px solid var(--border);
-    border-radius: 999px;
-    background-color: var(--background);
+    border-radius: var(--radius-badge);
+    background-color: transparent;
     color: var(--foreground);
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1;
     white-space: nowrap;
   }
@@ -143,8 +149,16 @@
 
   .zay-badge-solid {
     border-color: transparent;
-    background-color: var(--foreground);
-    color: var(--background);
+    background-color: #3f3f46;
+    color: #fafafa;
+  }
+
+  /* Ember: the single chromatic badge. Credentials and highlights only. */
+  .zay-badge-ember {
+    border-color: transparent;
+    background-color: var(--ember);
+    color: var(--ember-foreground);
+    font-weight: 500;
   }
 
   .zay-badge-secondary {
@@ -183,9 +197,9 @@
   .zay-badge-label {
     margin-inline-start: -0.25rem;
     padding: 0.125rem 0.375rem;
-    border-radius: 999px;
-    background-color: var(--brand);
-    color: var(--brand-foreground);
+    border-radius: 0.5rem;
+    background-color: var(--ember);
+    color: var(--ember-foreground);
     font-size: 0.6875rem;
   }
 

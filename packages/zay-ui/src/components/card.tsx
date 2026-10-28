@@ -10,7 +10,7 @@ export type CardStyle = {
   /** Hover feedback, for cards that are links. */
   interactive?: boolean;
   /** surface: a flat tinted card. raised: a card that lifts off the page. */
-  tone?: "default" | "surface" | "raised";
+  tone?: "default" | "surface" | "raised" | "dark";
 };
 
 export function cardClass({ padding = "md", interactive = false, tone = "default" }: CardStyle = {}, className?: string): string {
@@ -18,6 +18,7 @@ export function cardClass({ padding = "md", interactive = false, tone = "default
     "zay-card",
     tone === "surface" && "zay-card-surface",
     tone === "raised" && "zay-card-raised",
+    tone === "dark" && "zay-card-dark",
     padding !== "none" && `zay-card-pad-${padding}`,
     interactive && "zay-card-interactive",
     className,

@@ -169,10 +169,9 @@
     inset: 0;
     z-index: -1;
     background-image:
-      radial-gradient(50rem 26rem at 50% -6rem, var(--brand-soft), transparent 70%),
       linear-gradient(to right, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
       linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
-    background-size: auto, 3.5rem 3.5rem, 3.5rem 3.5rem;
+    background-size: 3.5rem 3.5rem, 3.5rem 3.5rem;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, #000 35%, transparent 100%);
   }
 
@@ -249,7 +248,7 @@
   /* Browser frame */
   .zay-frame {
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--background);
     box-shadow: var(--shadow-lg);
     overflow: hidden;
@@ -530,7 +529,7 @@
     display: grid;
     margin: 0;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--background);
     overflow: hidden;
   }
@@ -689,16 +688,15 @@
     gap: 1.25rem;
     padding: 1.75rem;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--background);
     box-shadow: var(--shadow-xs);
   }
 
   .zay-plan-featured {
     position: relative;
-    border-color: var(--brand-border);
-    background-image: linear-gradient(to bottom, var(--brand-soft), transparent 40%);
-    box-shadow: 0 0 0 1px var(--brand-border), var(--shadow-md);
+    border-color: var(--foreground);
+    box-shadow: 0 0 0 1px var(--foreground);
   }
 
   .zay-plan-head {
@@ -778,7 +776,7 @@
     display: grid;
     gap: 1.5rem;
     padding: 3rem 2rem;
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--background);
     color: var(--foreground);
     overflow: hidden;
@@ -797,10 +795,9 @@
     inset: 0;
     z-index: -1;
     background-image:
-      radial-gradient(30rem 16rem at 100% 0%, var(--brand-soft), transparent 70%),
       linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-    background-size: auto, 3rem 3rem, 3rem 3rem;
+    background-size: 3rem 3rem, 3rem 3rem;
   }
 
   .zay-cta h2 {
@@ -829,7 +826,7 @@
     gap: 1.5rem;
     padding: 2rem;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--surface);
   }
 
@@ -957,7 +954,7 @@
     max-width: 24rem;
     padding: 2rem;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-card);
     background-color: var(--background);
     box-shadow: var(--shadow-md);
   }

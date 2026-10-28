@@ -8,20 +8,20 @@
     justify-content: center;
     gap: 0.5rem;
     height: var(--control-md);
-    padding-inline: 0.875rem;
-    border: 1px solid var(--border-strong);
+    padding-inline: 1rem;
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1;
     white-space: nowrap;
     text-decoration: none;
     cursor: pointer;
     user-select: none;
-    box-shadow: var(--shadow-xs);
+    box-shadow: none;
     transition:
       background-color var(--duration-fast) var(--ease-out),
       border-color var(--duration-fast) var(--ease-out),
@@ -81,36 +81,30 @@
     width: var(--control-lg);
   }
 
-  /* Primary: solid ink with a lit top edge. The main action. */
-  .zay-btn-primary {
-    background-color: var(--foreground);
-    border-color: var(--foreground);
-    color: var(--background);
-    box-shadow: var(--highlight), var(--shadow-sm);
-  }
-
-  .zay-btn-primary:hover {
-    background-color: color-mix(in oklab, var(--foreground) 86%, var(--background));
-    border-color: transparent;
-  }
-
-  /* Brand: the accent. Use it for the one conversion action on a page. */
+  /* Primary / brand: the dark filled action. A lit top edge and a hairline ring
+     give it depth without a drop shadow. */
+  .zay-btn-primary,
   .zay-btn-brand {
-    background-image: linear-gradient(to bottom, color-mix(in oklab, var(--brand) 86%, white), var(--brand));
     background-color: var(--brand);
-    border-color: color-mix(in oklab, var(--brand) 80%, black);
+    border-color: transparent;
     color: var(--brand-foreground);
-    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.22), var(--shadow-sm);
+    box-shadow: var(--highlight), var(--button-ring), 0 4px 6px 0 rgb(0 0 0 / 0.14);
   }
 
+  .zay-btn-primary:hover,
   .zay-btn-brand:hover {
     background-color: var(--brand-hover);
-    background-image: linear-gradient(to bottom, color-mix(in oklab, var(--brand-hover) 86%, white), var(--brand-hover));
+  }
+
+  .zay-btn-primary:active,
+  .zay-btn-brand:active {
+    box-shadow: var(--highlight), var(--button-ring);
   }
 
   /* Secondary: a quiet filled button. */
   .zay-btn-secondary {
-    background-color: var(--muted);
+    background-color: var(--card);
+    border-color: var(--border);
     border-color: transparent;
     box-shadow: none;
   }
@@ -120,7 +114,12 @@
   }
 
   .zay-btn-outline {
-    background-color: var(--background);
+    background-color: var(--card);
+  }
+
+  /* Pill: the navigation shape. */
+  .zay-btn-pill {
+    border-radius: var(--radius-pill);
   }
 
   .zay-btn-ghost {

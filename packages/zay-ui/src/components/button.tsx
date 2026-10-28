@@ -6,6 +6,8 @@ export type ButtonVariant = "primary" | "brand" | "secondary" | "outline" | "gho
 export type ButtonSize = "sm" | "md" | "lg";
 
 export type ButtonStyle = {
+  /** Fully rounded, the navigation shape. */
+  pill?: boolean;
   /** primary: solid ink, the main action. brand: the accent, once per page. Default: outline. */
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -18,8 +20,8 @@ export type ButtonStyle = {
  *
  *   <a href="/contact" className={buttonClass({ variant: "primary" })}>Contact</a>
  */
-export function buttonClass({ variant = "outline", size = "md", icon = false }: ButtonStyle = {}, className?: string): string {
-  return cx("zay-btn", `zay-btn-${variant}`, size !== "md" && `zay-btn-${size}`, icon && "zay-btn-icon", className);
+export function buttonClass({ variant = "outline", size = "md", icon = false, pill = false }: ButtonStyle = {}, className?: string): string {
+  return cx("zay-btn", `zay-btn-${variant}`, size !== "md" && `zay-btn-${size}`, icon && "zay-btn-icon", pill && "zay-btn-pill", className);
 }
 
 /**
@@ -30,6 +32,7 @@ export function Button({
   variant,
   size,
   icon,
+  pill,
   loading,
   className,
   type = "button",
@@ -39,7 +42,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={buttonClass({ variant, size, icon }, className)}
+      className={buttonClass({ variant, size, icon, pill }, className)}
       data-loading={loading ? "" : undefined}
       aria-busy={loading || undefined}
       {...props}
