@@ -1,10 +1,10 @@
 ---
 title: "Theming"
-description: "Every colour, radius, shadow and size is a CSS variable. The kit is near-monochrome by default: zinc surfaces, ink-black actions and one ember accent."
+description: "Every colour, radius, shadow and size is a CSS variable. The kit is near-monochrome by default: obsidian and paper surfaces, ink-black actions and one lime accent."
 ---
 ## Colour
 
-The page is a `#f4f4f5` canvas with white cards and `#ececee` hairlines. The primary action is ink black (`--brand`, near white in dark mode). The only vivid colour is `--ember` (`#ff5a00`), kept for small badges: `<Badge variant="ember">`. Re-colour the actions by overriding `--brand`.
+The page is a `#f4f4f2` paper canvas (obsidian `#0a0a0b` in dark mode) with white cards and `#e4e4e0` hairlines. The primary action is ink black (`--brand`, near white in dark mode). The only vivid colour is lime, `--ember` (`#c8e64c`): a fill for small badges (`<Badge variant="ember">`) and one focal mark such as the leading bar in a chart. Lime is never text on a light surface; accent text uses `--accent-ink` (olive `#4d6b00` on light, lime on dark). Re-colour the actions by overriding `--brand`.
 
 ```css
 :root {
@@ -37,7 +37,8 @@ Components use meaning, not colours. Override any of these after importing the s
   ["muted-foreground", "Secondary text"],
   ["card", "Cards, white on the canvas"],
   ["brand", "Filled actions"],
-  ["ember", "The one accent, badges only"],
+  ["ember", "The one accent (lime), a fill for badges and focal marks"],
+  ["accent-ink", "Accent as text: olive on light, lime on dark"],
   ["brand-soft", "Tinted backgrounds"],
   ["destructive", "Errors"],
   ["success", "Positive"],

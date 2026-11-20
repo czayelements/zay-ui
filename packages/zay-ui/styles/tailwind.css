@@ -23,6 +23,11 @@
   --color-brand-soft: var(--brand-soft);
   --color-brand-border: var(--brand-border);
   --color-link: var(--link);
+  --color-ember: var(--ember);
+  --color-ember-foreground: var(--ember-foreground);
+  --color-ember-soft: var(--ember-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-edge: var(--accent-edge);
   --color-on-link: var(--on-link);
   --color-ring: var(--ring);
   --color-notice: var(--notice);

@@ -26,7 +26,7 @@ export default function Page() {
 
 - **47 components**: buttons and forms, dialogs, drawers, menus, command palette, toasts, tabs, tables and more. The interactive ones are Base UI underneath, so focus, keyboard and aria are handled.
 - **18 blocks**: a landing page, a dashboard, settings, authentication, pricing, FAQ, footer and more, to copy and edit.
-- **Quiet by design**: zinc surfaces, hairline borders, ink-black actions and a single ember accent (`#ff5a00`) for badges. Light and dark are built in.
+- **Quiet by design**: obsidian and paper surfaces, hairline borders, ink-black actions and a single lime accent (`--ember`, `#c8e64c`) for badges and one focal mark. Light and dark are built in.
 - **Plain CSS under React**: components print `zay-` classes, so the same look works without React or Tailwind, and your own utilities always win (everything is in `@layer components`).
 - **Server-component friendly**: static components have no client code.
 

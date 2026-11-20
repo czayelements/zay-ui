@@ -5,9 +5,11 @@
  * the blocks and your own CSS read the same values. Plain CSS: no build step and
  * no Tailwind needed (tailwind.css maps these to utilities).
  *
- * The look is editorial zinc: a #f4f4f5 canvas, white 36px cards, hairline
- * borders instead of shadows, a dark filled action and ONE chromatic colour
- * (--ember, for badges only). Override any semantic token (--brand, --radius,
+ * The look is Obsidian Lime: a #f4f4f2 paper canvas (obsidian #0a0a0b in dark),
+ * white 36px cards, hairline borders instead of shadows, a dark filled action
+ * and ONE chromatic colour, lime (--ember, for badges and single focal marks).
+ * Lime is a fill, never text on a light surface (1.4:1 on white); accent text
+ * uses --accent-ink (olive on light, lime on dark). Override any semantic token (--brand, --radius,
  * --background ...) after importing this file to re-theme it. Dark mode
  * redefines the same names under `.dark` or `[data-theme="dark"]`.
  */
@@ -24,37 +26,39 @@
     --radius: 0.875rem; /* buttons and inputs: 14px */
 
     /* ── Surfaces ── */
-    --background: #f4f4f5; /* the page canvas (Paper) */
-    --surface: #fafafa; /* recessed panels inside cards */
-    --muted: #efeff1; /* wells, hover fills, tracks */
+    --background: #f4f4f2; /* the page canvas (Paper) */
+    --surface: #f7f7f5; /* recessed panels inside cards */
+    --muted: #ededea; /* wells, hover fills, tracks */
     --popover: #ffffff; /* menus, dialogs, tooltips */
-    --inverse: #09090b; /* reversed sections */
-    --inverse-foreground: #fafafa;
+    --inverse: #0a0a0b; /* reversed sections */
+    --inverse-foreground: #f4f4f5;
 
     /* ── Text ── */
-    --foreground: #09090b; /* Obsidian */
+    --foreground: #0a0a0b; /* Obsidian */
     --muted-foreground: #52525b; /* secondary text (Steel) */
-    --subtle-foreground: #71717a; /* placeholders, decorative text */
+    --subtle-foreground: #66666e; /* placeholders, decorative text */
 
     /* ── Lines ── */
-    --border: #ececee; /* hairlines and dividers (Cloud) */
-    --border-strong: #d4d4d8; /* inputs, hovered borders */
+    --border: #e4e4e0; /* hairlines and dividers (Cloud) */
+    --border-strong: #d4d4cf; /* inputs, hovered borders */
 
     /* ── Accent ──
        The system is achromatic: --brand is the ink itself (the dark filled
        action). The one chromatic colour is --ember, reserved for badges. */
-    --brand: #09090b; /* filled actions, selected marks */
-    --brand-hover: #27272a;
+    --brand: #0a0a0b; /* filled actions, selected marks */
+    --brand-hover: #26262a;
     --brand-foreground: #ffffff;
-    --brand-soft: rgb(9 9 11 / 0.05); /* tinted backgrounds */
-    --brand-border: rgb(9 9 11 / 0.14);
-    --link: #09090b; /* links and accent text */
+    --brand-soft: rgb(10 10 11 / 0.05); /* tinted backgrounds */
+    --brand-border: rgb(10 10 11 / 0.14);
+    --link: #0a0a0b; /* links and accent text */
     --on-link: #ffffff;
-    --ring: rgb(9 9 11 / 0.45); /* focus ring */
+    --ring: rgb(10 10 11 / 0.45); /* focus ring */
     --notice: #ffffff; /* announcement strips */
-    --ember: #ff5a00; /* badges only: credentials, highlights */
-    --ember-foreground: #ffffff;
-    --ember-soft: rgb(255 90 0 / 0.1);
+    --ember: #c8e64c; /* lime: badges and one focal mark (bar, dot); fill only */
+    --ember-foreground: #0a0a0b;
+    --ember-soft: #eef5d6;
+    --accent-ink: #4d6b00; /* accent as text: olive on light (6.1:1 on white) */
+    --accent-edge: #a9c42e; /* hairline around lime fills on light surfaces */
 
     /* ── Status (solid colour for text/icons, soft for backgrounds) ── */
     --destructive: oklch(0.55 0.22 27);
@@ -126,30 +130,33 @@
   [data-theme="dark"] {
     color-scheme: dark;
 
-    --background: #09090b;
-    --surface: #111114;
-    --muted: #18181b;
-    --popover: #131316;
-    --card: #131316;
-    --inverse: #fafafa;
-    --inverse-foreground: #09090b;
+    --background: #0a0a0b;
+    --surface: #101012;
+    --muted: #1c1c1f;
+    --popover: #131315;
+    --card: #131315;
+    --inverse: #f4f4f5;
+    --inverse-foreground: #0a0a0b;
 
-    --foreground: #fafafa;
+    --foreground: #f4f4f5;
     --muted-foreground: #a1a1aa;
-    --subtle-foreground: #71717a;
+    --subtle-foreground: #86868f;
 
-    --border: #222226;
+    --border: #26262a;
     --border-strong: #34343a;
 
-    --brand: #fafafa;
+    --brand: #f4f4f5;
     --brand-hover: #e4e4e7;
-    --brand-foreground: #09090b;
-    --brand-soft: rgb(250 250 250 / 0.08);
-    --brand-border: rgb(250 250 250 / 0.2);
-    --link: #fafafa;
-    --on-link: #09090b;
-    --ring: rgb(250 250 250 / 0.5);
+    --brand-foreground: #0a0a0b;
+    --brand-soft: rgb(244 244 245 / 0.08);
+    --brand-border: rgb(244 244 245 / 0.2);
+    --link: #f4f4f5;
+    --on-link: #0a0a0b;
+    --ring: rgb(244 244 245 / 0.5);
     --button-ring: 0 0 0 1.5px #d4d4d8;
+
+    --ember-soft: rgb(200 230 76 / 0.14);
+    --accent-ink: #c8e64c;
 
     --destructive: oklch(0.7 0.19 22);
     --success: oklch(0.76 0.16 155);
@@ -167,22 +174,24 @@
 
   /* An always-dark panel: opt in with class="zay-dark" (or use a block that does). */
   .zay-dark {
-    --background: #18181b;
-    --surface: #1f1f23;
-    --muted: #27272a;
-    --popover: #131316;
-    --foreground: #fafafa;
+    --background: #131315;
+    --surface: #1c1c1f;
+    --muted: #26262a;
+    --popover: #131315;
+    --foreground: #f4f4f5;
     --muted-foreground: #a1a1aa;
-    --subtle-foreground: #71717a;
-    --border: #222226;
+    --subtle-foreground: #86868f;
+    --border: #26262a;
     --border-strong: #34343a;
-    --card: #18181b;
-    --brand: #fafafa;
-    --brand-foreground: #09090b;
-    --brand-soft: rgb(250 250 250 / 0.08);
-    --brand-border: rgb(250 250 250 / 0.2);
-    --link: #fafafa;
-    --ring: rgb(250 250 250 / 0.5);
+    --card: #131315;
+    --brand: #f4f4f5;
+    --brand-foreground: #0a0a0b;
+    --brand-soft: rgb(244 244 245 / 0.08);
+    --brand-border: rgb(244 244 245 / 0.2);
+    --link: #f4f4f5;
+    --ring: rgb(244 244 245 / 0.5);
+    --ember-soft: rgb(200 230 76 / 0.14);
+    --accent-ink: #c8e64c;
     color-scheme: dark;
     color: var(--foreground);
   }

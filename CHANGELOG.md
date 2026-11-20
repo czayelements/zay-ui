@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+Palette: **Obsidian Lime**.
+
+- **Surfaces**: light canvas `#f4f4f2` with `#e4e4e0` hairlines; dark canvas `#0a0a0b`, cards `#131315`, hairlines `#26262a`. Ink is `#0a0a0b` / `#f4f4f5`.
+- **Accent**: `--ember` is now lime (`#c8e64c`) with dark text (`--ember-foreground: #0a0a0b`). It is a fill only; it fails as text on light surfaces.
+- **New tokens**: `--accent-ink` (accent as text: `#4d6b00` on light, lime on dark) and `--accent-edge` (`#a9c42e`, hairline around lime fills on light). Tailwind: `text-accent-ink`, `border-accent-edge`, `bg-ember`.
+- **Contrast**: subtle text is `#66666e` on light and `#86868f` on dark (both ≥ 5:1 on their canvas).
+
 ## 0.1.0-alpha.4
 
 - The default font stack no longer lists the commercial "Cosmica" (it was never bundled): DM Sans, then the system fonts.
